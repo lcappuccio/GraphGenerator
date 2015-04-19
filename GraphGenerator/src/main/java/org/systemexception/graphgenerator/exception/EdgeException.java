@@ -11,12 +11,6 @@ public class EdgeException extends Exception {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Creates a new instance of <code>EdgeException</code> without detail message.
-	 */
-	public EdgeException() {
-	}
-
-	/**
 	 * Constructs an instance of <code>EdgeException</code> with the specified detail message.
 	 *
 	 * @param msg the detail message.
