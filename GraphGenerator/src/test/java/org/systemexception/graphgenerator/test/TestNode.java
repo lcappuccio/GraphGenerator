@@ -21,4 +21,11 @@ public class TestNode {
 		sut = new Node(nodeId, nodeDescr);
 	}
 
+	@Test(expected = org.systemexception.graphgenerator.exception.NodeException.class)
+	public void throwExceptionOnNullDescr() throws NodeException {
+		String nodeId = "123";
+		String nodeDescr = null;
+		sut = new Node(nodeId, nodeDescr);
+	}
+
 }
