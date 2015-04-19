@@ -31,6 +31,12 @@ public class Node {
 		return nodeDescr;
 	}
 
+	/**
+	 * Test for strictly alphanumeric based id
+	 *
+	 * @param s
+	 * @return
+	 */
 	private boolean isAlphaNumeric(String s) {
 		String pattern = "^[a-zA-Z0-9]*$";
 		return s.matches(pattern);
