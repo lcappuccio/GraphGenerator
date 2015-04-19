@@ -16,6 +16,9 @@ public class Node {
 		if (nodeId == null || nodeDescr == null) {
 			throw new NodeException("Null value for nodes");
 		}
+		if (!isAlphaNumeric(nodeId)) {
+			throw new NodeException("Invalid chars on nodeId");
+		}
 		this.nodeId = nodeId;
 		this.nodeDescr = nodeDescr;
 	}
@@ -26,5 +29,10 @@ public class Node {
 
 	public String getNodeDescr() {
 		return nodeDescr;
+	}
+
+	private boolean isAlphaNumeric(String s) {
+		String pattern = "^[a-zA-Z0-9]*$";
+		return s.matches(pattern);
 	}
 }

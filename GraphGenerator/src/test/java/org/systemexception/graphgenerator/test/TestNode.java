@@ -28,4 +28,11 @@ public class TestNode {
 		sut = new Node(nodeId, nodeDescr);
 	}
 
+	@Test(expected = org.systemexception.graphgenerator.exception.NodeException.class)
+	public void throwExceptionForNonAlphaNumericId() throws NodeException {
+		String nodeId = "1-2-3";
+		String nodeDescr = "A-B-C";
+		sut = new Node(nodeId, nodeDescr);
+	}
+
 }
