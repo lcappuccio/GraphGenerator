@@ -13,8 +13,8 @@ import org.systemexception.graphgenerator.exception.NodeException;
 
 public class Tree {
 
-	private List<Node> nodes;
-	private List<Edge> edges;
+	private final ArrayList<Node> nodes;
+	private final ArrayList<Edge> edges;
 	private final int levels, childPerNode;
 
 	public Tree(int levels, int childPerNode) throws NodeException, EdgeException {
@@ -22,9 +22,9 @@ public class Tree {
 		edges = new ArrayList();
 		this.levels = levels;
 		this.childPerNode = childPerNode;
-		Node root = new Node("root", "RootNode");
-		nodes.add(root);
-		makeTree(root, 0);
+		Node rootNode = new Node("root", "RootNode");
+		nodes.add(rootNode);
+		makeTree(rootNode);
 	}
 
 	/**
@@ -33,14 +33,15 @@ public class Tree {
 	 * @param rootNode
 	 * @param nodes
 	 */
-	private void makeTree(Node node, int counter) throws NodeException, EdgeException {
-		for (int i = counter; counter < childPerNode; ++i) {
-			Node childNode = new Node("Node" + String.valueOf(i), "Level" + String.valueOf(i));
-			System.out.println("Adding node " + childNode.getNodeId());
-			nodes.add(childNode);
-			Edge edge = new Edge(node, childNode);
-			edges.add(edge);
-			makeTree(childNode, ++counter);
+	private void makeTree(Node node) throws NodeException, EdgeException {
+		for (Node tmpNode : nodes) {
+			for (int i = 0; i < childPerNode; i++) {
+				Node childNode = new Node("Node" + String.valueOf(i), "Level" + String.valueOf(i));
+				System.out.println("Adding node " + childNode.getNodeId());
+				nodes.add(childNode);
+				Edge edge = new Edge(tmpNode, childNode);
+				edges.add(edge);
+			}
 		}
 	}
 

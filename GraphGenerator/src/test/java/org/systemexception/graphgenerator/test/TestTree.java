@@ -18,13 +18,13 @@ public class TestTree {
 
 	@Test
 	public void createSimpleTree() throws NodeException, EdgeException {
-		sut = new Tree(1, 3);
+		sut = new Tree(3, 3);
 		for (int i = 0; i < sut.getNodes().size(); i++) {
 			System.out.println("Node in tree: " + sut.getNodes().get(i).getNodeId());
 		}
 		for (int i = 0; i < sut.getEdges().size(); i++) {
-			System.out.println("Parent node: " + sut.getEdges().get(i).getParentNode().getNodeId());
-			System.out.println("Child node: " + sut.getEdges().get(i).getChildNode().getNodeId());
+			System.out.println("Edge parent node: " + sut.getEdges().get(i).getParentNode().getNodeId());
+			System.out.println("Edge child node: " + sut.getEdges().get(i).getChildNode().getNodeId());
 
 		}
 	}
