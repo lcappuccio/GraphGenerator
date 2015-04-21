@@ -20,8 +20,26 @@ public class TestTree {
 	public void createSimpleTree() throws NodeException, EdgeException {
 		int height = 1;
 		int childPerNode = 3;
-		double totalNodes = (Math.pow(childPerNode, height + 1) - 1)/(childPerNode - 1);
+		double totalNodes = (Math.pow(childPerNode, height + 1) - 1) / (childPerNode - 1);
 		sut = new Tree(height, childPerNode);
 		assertTrue(totalNodes == 4);
+	}
+
+	@Test
+	public void createModerateTree() throws NodeException, EdgeException {
+		int height = 5;
+		int childPerNode = 10;
+		double totalNodes = (Math.pow(childPerNode, height + 1) - 1)/(childPerNode - 1);
+		sut = new Tree(height, childPerNode);
+		assertTrue(totalNodes == 111111);
+	}
+
+	@Test
+	public void createBigTree() throws NodeException, EdgeException {
+		int height = 8;
+		int childPerNode = 7;
+		double totalNodes = (Math.pow(childPerNode, height + 1) - 1) / (childPerNode - 1);
+		sut = new Tree(height, childPerNode);
+		assertTrue(totalNodes == 6725601);
 	}
 }
