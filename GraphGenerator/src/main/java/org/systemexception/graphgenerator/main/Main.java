@@ -20,7 +20,7 @@ import org.systemexception.graphgenerator.model.Tree;
 import org.systemexception.graphgenerator.pojo.CsvWriter;
 
 public class Main {
-	
+
 	private static int treeLevels, childPerNode;
 	private static String outputFileName;
 	// Command line options
@@ -29,26 +29,17 @@ public class Main {
 	private static CommandLine cmdLine;
 	private static final String HELP_OPTION = "h", OUTPUT_FILENAME = "o", TREE_LEVELS = "l", CHILD_PER_NODE = "c";
 
-	public static void main(String[] args) throws ParseException {
+	public static void main(String[] args) throws ParseException, NodeException, EdgeException, TreeException, CsvWriterException {
 
 		// Validate launch options
 		validateOptions(args);
-		Tree tree = null;
-		
-		try {
-			tree = new Tree(treeLevels, childPerNode);
-		} catch (NodeException | EdgeException | TreeException ex) {
-			System.out.println(ex.getMessage());
-		}
+		// Create tree and csv util
+		Tree tree = new Tree(treeLevels, childPerNode);
 		CsvWriter csvWriter = new CsvWriter(outputFileName);
-		try {
-			csvWriter.writeFile(tree);
-		} catch (CsvWriterException ex) {
-			System.out.println(ex.getMessage());
-		}
+		csvWriter.writeFile(tree);
 		System.exit(0);
 	}
-	
+
 	/**
 	 * Validate all options
 	 *
@@ -72,14 +63,14 @@ public class Main {
 			helpFormatter.printHelp(Main.class.getName(), options, true);
 			exceptionHandler("Nodes amount is mandatory");
 		} else {
-			treeLevels = Integer.valueOf(cmdLine.getOptionValue(TREE_LEVELS));
+			treeLevels = Integer.parseInt(cmdLine.getOptionValue(TREE_LEVELS));
 			System.out.println("Tree levels: " + treeLevels);
 		}
 		if (!cmdLine.hasOption(CHILD_PER_NODE)) {
 			helpFormatter.printHelp(Main.class.getName(), options, true);
 			exceptionHandler("Nodes amount is mandatory");
 		} else {
-			childPerNode = Integer.valueOf(cmdLine.getOptionValue(CHILD_PER_NODE));
+			childPerNode = Integer.parseInt(cmdLine.getOptionValue(CHILD_PER_NODE));
 			System.out.println("Child per node: " + childPerNode);
 		}
 		if (!cmdLine.hasOption(OUTPUT_FILENAME)) {
@@ -89,16 +80,15 @@ public class Main {
 			outputFileName = cmdLine.getOptionValue(OUTPUT_FILENAME);
 			System.out.println("Filename: " + outputFileName);
 		}
-		
+
 	}
-	
+
 	/**
 	 * Print an exception and quit
 	 *
 	 * @param message
 	 */
 	public static void exceptionHandler(String message) {
-		System.out.println(message);
-		System.exit(1);
+		throw new RuntimeException(message);
 	}
 }
