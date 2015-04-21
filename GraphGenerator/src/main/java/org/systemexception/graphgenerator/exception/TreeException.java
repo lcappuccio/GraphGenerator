@@ -4,10 +4,6 @@
  * @author lcappuccio
  * @date 21/04/2015 14:17
  *
- * Copyright (C) 2015 Scytl Secure Electronic Voting SA
- *
- * All rights reserved.
- *
  */
 package org.systemexception.graphgenerator.exception;
 
