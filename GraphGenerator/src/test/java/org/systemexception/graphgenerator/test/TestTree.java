@@ -10,36 +10,50 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.systemexception.graphgenerator.exception.EdgeException;
 import org.systemexception.graphgenerator.exception.NodeException;
+import org.systemexception.graphgenerator.exception.TreeException;
 import org.systemexception.graphgenerator.model.Tree;
 
 public class TestTree {
 
 	private Tree sut;
+	double totalNodes;
 
 	@Test
-	public void createSimpleTree() throws NodeException, EdgeException {
-		int height = 1;
-		int childPerNode = 3;
-		double totalNodes = (Math.pow(childPerNode, height + 1) - 1) / (childPerNode - 1);
-		sut = new Tree(height, childPerNode);
+	public void createSimpleTree() throws NodeException, EdgeException, TreeException {
+		generateTree(1,3);
 		assertTrue(totalNodes == sut.getNodes().size());
 	}
 
 	@Test
-	public void createModerateTree() throws NodeException, EdgeException {
-		int height = 5;
-		int childPerNode = 10;
-		double totalNodes = (Math.pow(childPerNode, height + 1) - 1)/(childPerNode - 1);
-		sut = new Tree(height, childPerNode);
+	public void createTwoLevelTree() throws NodeException, EdgeException, TreeException {
+		generateTree(2,2);
 		assertTrue(totalNodes == sut.getNodes().size());
 	}
 
 	@Test
-	public void createBigTree() throws NodeException, EdgeException {
-		int height = 8;
-		int childPerNode = 7;
-		double totalNodes = (Math.pow(childPerNode, height + 1) - 1) / (childPerNode - 1);
-		sut = new Tree(height, childPerNode);
+	public void createModerateTree() throws NodeException, EdgeException, TreeException {
+		generateTree(5,10);
 		assertTrue(totalNodes == sut.getNodes().size());
+	}
+
+	@Test
+	public void createBigTree() throws NodeException, EdgeException, TreeException {
+		generateTree(8,7);
+		assertTrue(totalNodes == sut.getNodes().size());
+	}
+
+	/**
+	 * 
+	 * @param height
+	 * @param childPerNode
+	 * @throws NodeException
+	 * @throws EdgeException
+	 * @throws TreeException 
+	 */
+	private void generateTree(int height, int childPerNode) throws NodeException, EdgeException, TreeException {
+		int treeHeight = height;
+		int treeChildPerNode = childPerNode;
+		totalNodes = (Math.pow(treeChildPerNode, treeHeight + 1) - 1) / (treeChildPerNode - 1);
+		sut = new Tree(treeHeight, treeChildPerNode);
 	}
 }
