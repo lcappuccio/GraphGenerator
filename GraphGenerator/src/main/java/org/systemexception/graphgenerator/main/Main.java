@@ -23,7 +23,7 @@ public class Main {
 		}
 		
 		try {
-			tree = new Tree(1,10);
+			tree = new Tree(8,4);
 		} catch (NodeException | EdgeException | TreeException ex) {
 			System.out.println(ex.getMessage());
 		}
