@@ -16,7 +16,7 @@ public class Node {
 		if (nodeId == null || nodeDescr == null) {
 			throw new NodeException("Null value for nodes");
 		}
-		if (!isAlphaNumeric(nodeId)) {
+		if (!isNamingConventionCompliant(nodeId)) {
 			throw new NodeException("Invalid chars on nodeId");
 		}
 		this.nodeId = nodeId;
@@ -32,13 +32,13 @@ public class Node {
 	}
 
 	/**
-	 * Test for strictly alphanumeric based id
+	 * Test for strictly naming convention id (NodeLevel_ID)
 	 *
-	 * @param s
+	 * @param nodeId
 	 * @return
 	 */
-	private boolean isAlphaNumeric(String s) {
-		String pattern = "^[a-zA-Z0-9]*$";
-		return s.matches(pattern);
+	private boolean isNamingConventionCompliant(String nodeId) {
+		String pattern = "^[a-zA-Z0-9_]*$";
+		return nodeId.matches(pattern);
 	}
 }
