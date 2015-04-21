@@ -34,8 +34,14 @@ public class Tree {
 		treeLevelsString = new ArrayList();
 		this.treeLevels = levels;
 		this.childPerNode = childPerNode;
-		Node rootNode = new Node("0", "RootNode");
+		Node rootNode = new Node("1", "RootNode");
 		treeNodes.add(rootNode);
+		treeLevelString = new ArrayList();
+		treeLevelString.add("1");
+		treeLevelString.add("0");
+		treeLevelString.add("RootNode");
+		treeLevelString.add("RootLevel");
+		treeLevelsString.add(treeLevelString);
 		makeTree(rootNode, 0);
 	}
 
@@ -51,8 +57,8 @@ public class Tree {
 		}
 		for (int i = 0; i < childPerNode; i++) {
 			String childNodeId = "Node_" + parentNode.getNodeId().replace("Node", "").replace("_", "") + String.valueOf(i);
-			String childNodeDescr = "Node" + String.valueOf(currentLevel) + "_" + String.valueOf(i) + "Level" + String.valueOf(currentLevel);
-			Node childNode = new Node(childNodeId,childNodeDescr);
+			String childNodeDescr = "Node" + String.valueOf(currentLevel) + "_" + String.valueOf(i) + "_Level" + String.valueOf(currentLevel);
+			Node childNode = new Node(childNodeId, childNodeDescr);
 			Edge edge = new Edge(parentNode, childNode);
 			if (nodeExists(childNode.getNodeId())) {
 				throw new TreeException("NodeId " + childNode.getNodeId() + " already exists");
