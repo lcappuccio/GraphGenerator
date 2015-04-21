@@ -41,6 +41,7 @@ public class Tree {
 			Node childNode = new Node("Node" + String.valueOf(currentLevel) + "_" + String.valueOf(i), 
 					"Node" + String.valueOf(currentLevel) + "_" + String.valueOf(i)+"Level" + String.valueOf(currentLevel));
 			Edge edge = new Edge(node, childNode);
+			treeNodes.add(childNode);
 			treeEdges.add(edge);
 			makeTree(childNode, currentLevel + 1);
 		}
