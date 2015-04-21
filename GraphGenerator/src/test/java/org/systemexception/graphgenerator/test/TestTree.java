@@ -22,7 +22,7 @@ public class TestTree {
 		int childPerNode = 3;
 		double totalNodes = (Math.pow(childPerNode, height + 1) - 1) / (childPerNode - 1);
 		sut = new Tree(height, childPerNode);
-		assertTrue(totalNodes == 4);
+		assertTrue(totalNodes == sut.getNodes().size());
 	}
 
 	@Test
@@ -31,7 +31,7 @@ public class TestTree {
 		int childPerNode = 10;
 		double totalNodes = (Math.pow(childPerNode, height + 1) - 1)/(childPerNode - 1);
 		sut = new Tree(height, childPerNode);
-		assertTrue(totalNodes == 111111);
+		assertTrue(totalNodes == sut.getNodes().size());
 	}
 
 	@Test
@@ -40,6 +40,6 @@ public class TestTree {
 		int childPerNode = 7;
 		double totalNodes = (Math.pow(childPerNode, height + 1) - 1) / (childPerNode - 1);
 		sut = new Tree(height, childPerNode);
-		assertTrue(totalNodes == 6725601);
+		assertTrue(totalNodes == sut.getNodes().size());
 	}
 }
