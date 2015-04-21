@@ -7,6 +7,7 @@
 package org.systemexception.graphgenerator.test;
 
 import static org.junit.Assert.assertTrue;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.systemexception.graphgenerator.exception.EdgeException;
 import org.systemexception.graphgenerator.exception.NodeException;
@@ -29,14 +30,22 @@ public class TestTree {
 		generateTree(2,2);
 		assertTrue(totalNodes == sut.getNodes().size());
 	}
+	
+	@Test
+	public void createFourLevelTree() throws NodeException, EdgeException, TreeException {
+		generateTree(2,4);
+		assertTrue(totalNodes == sut.getNodes().size());
+	}
 
 	@Test
+	@Ignore
 	public void createModerateTree() throws NodeException, EdgeException, TreeException {
 		generateTree(5,10);
 		assertTrue(totalNodes == sut.getNodes().size());
 	}
 
 	@Test
+	@Ignore
 	public void createBigTree() throws NodeException, EdgeException, TreeException {
 		generateTree(8,7);
 		assertTrue(totalNodes == sut.getNodes().size());
