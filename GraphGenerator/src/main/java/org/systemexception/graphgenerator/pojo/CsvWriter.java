@@ -17,7 +17,6 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.systemexception.graphgenerator.enums.CsvHeaders;
 import org.systemexception.graphgenerator.exception.CsvWriterException;
-import org.systemexception.graphgenerator.model.Node;
 import org.systemexception.graphgenerator.model.Tree;
 
 public class CsvWriter {
@@ -48,10 +47,12 @@ public class CsvWriter {
 		try {
 			outWriter = new OutputStreamWriter(new FileOutputStream(new File(fileName)), "UTF-8");
 			csvFilePrinter = new CSVPrinter(outWriter, csvFormat);
-			for (Node treeNode : tree.getNodes()) {
+			for (ArrayList<String> treeLevel : tree.getTreeLevelsString()) {
 				List treeNodeRecord = new ArrayList();
-				treeNodeRecord.add(treeNode.getNodeId());
-				treeNodeRecord.add(treeNode.getNodeDescr());
+				treeNodeRecord.add(treeLevel.get(1));
+				treeNodeRecord.add(treeLevel.get(0));
+				treeNodeRecord.add(treeLevel.get(2));
+				treeNodeRecord.add(treeLevel.get(3));
 				csvFilePrinter.printRecord(treeNodeRecord);
 			}
 			System.out.println("CSV file was created successfully");
