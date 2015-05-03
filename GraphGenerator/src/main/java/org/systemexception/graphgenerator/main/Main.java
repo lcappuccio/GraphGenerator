@@ -61,21 +61,21 @@ public class Main {
 		// Verify mandatory options
 		if (!cmdLine.hasOption(TREE_LEVELS)) {
 			helpFormatter.printHelp(Main.class.getName(), options, true);
-			exceptionHandler("Nodes amount is mandatory");
+			exceptionHandler("Tree height/levels is mandatory");
 		} else {
 			treeLevels = Integer.parseInt(cmdLine.getOptionValue(TREE_LEVELS));
 			System.out.println("Tree levels: " + treeLevels);
 		}
 		if (!cmdLine.hasOption(CHILD_PER_NODE)) {
 			helpFormatter.printHelp(Main.class.getName(), options, true);
-			exceptionHandler("Nodes amount is mandatory");
+			exceptionHandler("Child per nodes amount is mandatory");
 		} else {
 			childPerNode = Integer.parseInt(cmdLine.getOptionValue(CHILD_PER_NODE));
 			System.out.println("Child per node: " + childPerNode);
 		}
 		if (!cmdLine.hasOption(OUTPUT_FILENAME)) {
 			helpFormatter.printHelp(Main.class.getName(), options, true);
-			exceptionHandler("Nodes amount is mandatory");
+			exceptionHandler("Output filename is mandatory");
 		} else {
 			outputFileName = cmdLine.getOptionValue(OUTPUT_FILENAME);
 			System.out.println("Filename: " + outputFileName);
