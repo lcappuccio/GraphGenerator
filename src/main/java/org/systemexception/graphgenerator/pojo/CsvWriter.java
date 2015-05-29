@@ -7,40 +7,41 @@
  */
 package org.systemexception.graphgenerator.pojo;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.List;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.systemexception.graphgenerator.enums.CsvHeaders;
 import org.systemexception.graphgenerator.exception.CsvWriterException;
 import org.systemexception.graphgenerator.model.Tree;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.List;
+
 public class CsvWriter {
 
 	private final CSVFormat csvFormat;
 	private CSVPrinter csvFilePrinter;
-	private final String[] headerMapping = new String[]{CsvHeaders.PARENT_ID.toString(), CsvHeaders.NODE_ID.toString(),
-		CsvHeaders.DESCRIPTION.toString(), CsvHeaders.TYPE.toString()};
-	private final String fileName;
+    private final String fileName;
 	private OutputStreamWriter outWriter;
 
 	/**
 	 *
-	 * @param fileName
+	 * @param fileName the filename
 	 */
 	public CsvWriter(String fileName) {
-		this.csvFormat = CSVFormat.RFC4180.withHeader(headerMapping).withSkipHeaderRecord(false).withRecordSeparator(System.lineSeparator());
+        String[] headerMapping = new String[]{CsvHeaders.PARENT_ID.toString(), CsvHeaders.NODE_ID.toString(),
+                CsvHeaders.DESCRIPTION.toString(), CsvHeaders.TYPE.toString()};
+        this.csvFormat = CSVFormat.RFC4180.withHeader(headerMapping).withSkipHeaderRecord(false).withRecordSeparator(System.lineSeparator());
 		this.fileName = fileName;
 	}
 
 	/**
 	 * Writes a csv file with the tree
 	 *
-	 * @param tree
+	 * @param tree the tree to write to the file
 	 * @throws org.systemexception.graphgenerator.exception.CsvWriterException
 	 */
 	public void writeFile(Tree tree) throws CsvWriterException {
@@ -64,7 +65,7 @@ public class CsvWriter {
 				outWriter.close();
 				csvFilePrinter.close();
 			} catch (IOException e) {
-				throw new CsvWriterException("Error while flushing/closing fileWriter/csvPrinter: " + e.getMessage());
+                e.printStackTrace(System.err);
 			}
 		}
 	}

@@ -8,8 +8,6 @@
 package org.systemexception.graphgenerator.exception;
 
 public class CsvWriterException extends Exception {
-	
-	private static final long serialVersionUID = 6003776784196930310L;
 
     /**
      * Constructs an instance of <code>CsvWriterException</code> with the specified detail message.
