@@ -18,15 +18,13 @@ public class TestEdge {
 
 	@Test(expected = org.systemexception.graphgenerator.exception.EdgeException.class)
 	public void throwExceptionOnNullParentNode() throws NodeException, EdgeException {
-		Node parentNode = null;
 		Node childNode = new Node("ABC", "ABC");
-		sut = new Edge(parentNode, childNode);
+		sut = new Edge(null, childNode);
 	}
 
 	@Test(expected = org.systemexception.graphgenerator.exception.EdgeException.class)
 	public void throwExceptionOnNullChildNode() throws NodeException, EdgeException {
 		Node parentNode = new Node("ABC", "ABC");
-		Node childNode = null;
-		sut = new Edge(parentNode, childNode);
+		sut = new Edge(parentNode, null);
 	}
 }
