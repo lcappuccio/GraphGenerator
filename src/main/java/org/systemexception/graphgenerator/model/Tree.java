@@ -57,7 +57,7 @@ public class Tree {
 		}
 		for (int i = 0; i < childPerNode; i++) {
 			String childNodeId = "Node_" + parentNode.getNodeId().replace("Node", "").replace("_", "") + String.valueOf(i);
-			String childNodeDescr = "Node" + String.valueOf(currentLevel) + "_" + String.valueOf(i) + "_Level" + String.valueOf(currentLevel);
+			String childNodeDescr = childNodeId + "_Level" + String.valueOf(currentLevel);
 			Node childNode = new Node(childNodeId, childNodeDescr);
 			Edge edge = new Edge(parentNode, childNode);
 			if (nodeExists(childNode.getNodeId())) {
