@@ -8,8 +8,6 @@
 package org.systemexception.graphgenerator.exception;
 
 public class TreeException extends Exception {
-	
-	private static final long serialVersionUID = -7879346152287101612L;
 
     /**
      * Constructs an instance of <code>TreeException</code> with the specified detail message.

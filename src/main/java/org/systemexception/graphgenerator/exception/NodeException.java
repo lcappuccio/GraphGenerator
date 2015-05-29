@@ -8,8 +8,6 @@ package org.systemexception.graphgenerator.exception;
 
 public class NodeException extends Exception {
 
-	private static final long serialVersionUID = 5463734201020235826L;
-
 	/**
 	 * Constructs an instance of <code>NodeException</code> with the specified detail message.
 	 *

@@ -6,13 +6,13 @@
  */
 package org.systemexception.graphgenerator.test;
 
-import static org.junit.Assert.assertTrue;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.systemexception.graphgenerator.exception.EdgeException;
 import org.systemexception.graphgenerator.exception.NodeException;
 import org.systemexception.graphgenerator.exception.TreeException;
 import org.systemexception.graphgenerator.model.Tree;
+
+import static org.junit.Assert.assertTrue;
 
 public class TestTree {
 
@@ -38,31 +38,21 @@ public class TestTree {
 	}
 
 	@Test
-	@Ignore
 	public void createModerateTree() throws NodeException, EdgeException, TreeException {
-		generateTree(5,10);
-		assertTrue(totalNodes == sut.getNodes().size());
-	}
-
-	@Test
-	@Ignore
-	public void createBigTree() throws NodeException, EdgeException, TreeException {
-		generateTree(8,7);
+		generateTree(5,6);
 		assertTrue(totalNodes == sut.getNodes().size());
 	}
 
 	/**
 	 * 
-	 * @param height
-	 * @param childPerNode
+	 * @param height the height of the tree level we're on
+	 * @param childPerNode how many childs per node
 	 * @throws NodeException
 	 * @throws EdgeException
 	 * @throws TreeException 
 	 */
 	private void generateTree(int height, int childPerNode) throws NodeException, EdgeException, TreeException {
-		int treeHeight = height;
-		int treeChildPerNode = childPerNode;
-		totalNodes = (Math.pow(treeChildPerNode, treeHeight + 1) - 1) / (treeChildPerNode - 1);
-		sut = new Tree(treeHeight, treeChildPerNode);
+        totalNodes = (Math.pow(childPerNode, height + 1) - 1) / (childPerNode - 1);
+		sut = new Tree(height, childPerNode);
 	}
 }

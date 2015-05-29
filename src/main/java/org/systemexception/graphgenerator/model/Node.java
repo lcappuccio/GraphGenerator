@@ -34,8 +34,8 @@ public class Node {
 	/**
 	 * Test for strictly naming convention id (NodeLevel_ID)
 	 *
-	 * @param nodeId
-	 * @return
+	 * @param nodeId the node id
+	 * @return the boolean for name validation
 	 */
 	private boolean isNamingConventionCompliant(String nodeId) {
 		String pattern = "^[a-zA-Z0-9_]*$";
