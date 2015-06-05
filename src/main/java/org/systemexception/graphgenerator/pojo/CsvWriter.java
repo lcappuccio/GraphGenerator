@@ -31,7 +31,7 @@ public class CsvWriter {
      * @param fileName the filename
      */
     public CsvWriter(String fileName) {
-        String[] headerMapping = new String[]{CsvHeaders.PARENT_ID.toString(), CsvHeaders.NODE_ID.toString(),
+        String[] headerMapping = new String[]{CsvHeaders.NODE_ID.toString(), CsvHeaders.PARENT_ID.toString(),
                 CsvHeaders.DESCRIPTION.toString(), CsvHeaders.TYPE.toString()};
         this.csvFormat = CSVFormat.RFC4180.withHeader(headerMapping).withSkipHeaderRecord(false).withRecordSeparator(System.lineSeparator());
         this.fileName = fileName;
@@ -48,12 +48,7 @@ public class CsvWriter {
             outWriter = new OutputStreamWriter(new FileOutputStream(new File(fileName)), "UTF-8");
             csvFilePrinter = new CSVPrinter(outWriter, csvFormat);
             for (ArrayList<String> treeLevel : tree.getTreeLevelsString()) {
-                List treeNodeRecord = new ArrayList();
-                treeNodeRecord.add(treeLevel.get(1));
-                treeNodeRecord.add(treeLevel.get(0));
-                treeNodeRecord.add(treeLevel.get(2));
-                treeNodeRecord.add(treeLevel.get(3));
-                csvFilePrinter.printRecord(treeNodeRecord);
+                csvFilePrinter.printRecord(treeLevel);
             }
             System.out.println("CSV file was created successfully");
         } catch (IOException e) {
