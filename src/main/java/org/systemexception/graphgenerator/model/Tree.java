@@ -86,12 +86,25 @@ public class Tree {
     }
 
     /**
+     * Empties a tree
+     */
+    public void emptyTree() {
+        Node startingNode = treeNodes.get(treeNodes.size() - 1);
+        while (treeNodes.size() > 0) {
+            removeNode(startingNode);
+            if (treeNodes.size() > 0) {
+                emptyTree();
+            }
+        }
+    }
+
+    /**
      * Removes a node from the tree
      *
      * @param node the node to remove
      * @throws TreeException
      */
-    public void removeNode(Node node) throws TreeException {
+    public void removeNode(Node node) {
         ArrayList<Node> childNodes = getChildNodes(node);
         if (getChildNodes(node).size() > 0) {
             for (Node childNode : childNodes) {

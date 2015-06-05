@@ -61,7 +61,7 @@ public class TestTree {
 
     @Test
     public void emptyTree() throws NodeException, TreeException, EdgeException {
-        generateTree(1, 3);
+        generateTree(3, 3);
         while (sut.getNodes().size() > 0) {
             for (int i = 0; i < sut.getNodes().size(); i++) {
                 Node nodeToRemove = sut.getNodes().get(i);
@@ -71,6 +71,14 @@ public class TestTree {
         assertTrue(sut.getNodes().size() == 0);
         assertTrue(sut.getEdges().size() == 0);
     }
+
+   @Test
+   public void emptyTreeInternalMethod() throws NodeException, TreeException, EdgeException {
+       generateTree(4,6);
+       sut.emptyTree();
+       assertTrue(sut.getNodes().size() == 0);
+       assertTrue(sut.getEdges().size() == 0);
+   }
 
     /**
      * Generates a tree
