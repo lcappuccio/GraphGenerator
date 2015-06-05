@@ -4,6 +4,7 @@
  */
 package org.systemexception.graphgenerator.model;
 
+import org.systemexception.graphgenerator.enums.Labels;
 import org.systemexception.graphgenerator.exception.EdgeException;
 import org.systemexception.graphgenerator.exception.NodeException;
 import org.systemexception.graphgenerator.exception.TreeException;
@@ -52,8 +53,8 @@ public class Tree {
             return;
         }
         for (int i = 0; i < childPerNode; i++) {
-            String childNodeId = "Node_" + parentNode.getNodeId().replace("Node", "").replace("_", "") + String.valueOf(i);
-            String childNodeDescr = childNodeId + "_Level" + String.valueOf(currentLevel);
+            String childNodeId = Labels.NODE_NAME.toString() + parentNode.getNodeId().replace(Labels.NODE_NAME.toString(), "") + String.valueOf(i);
+            String childNodeDescr = childNodeId + Labels.LEVEL_NAME.toString() + String.valueOf(currentLevel);
             Node childNode = new Node(childNodeId, childNodeDescr);
             Edge edge = new Edge(parentNode, childNode);
             if (nodeExists(childNode.getNodeId())) {
@@ -61,7 +62,7 @@ public class Tree {
             }
             treeNodes.add(childNode);
             treeEdges.add(edge);
-            buildStringForTreeLevelDescription(childNodeId, childNodeDescr, parentNode.getNodeId(), "Level" + String.valueOf(currentLevel), treeLevelString);
+            buildStringForTreeLevelDescription(childNodeId, childNodeDescr, parentNode.getNodeId(), Labels.LEVEL_NAME.toString().replace("_","") + String.valueOf(currentLevel), treeLevelString);
             makeTree(childNode, currentLevel + 1);
         }
     }
@@ -82,6 +83,22 @@ public class Tree {
         treeLevelString.add(childNodeDescr);
         treeLevelString.add(e);
         treeLevelsString.add(treeLevelString);
+    }
+
+    /**
+     * Removes a node from the tree
+     * @param node the node to remove
+     * @throws TreeException
+     */
+    public void removeNode(Node node) throws TreeException {
+        for (Edge treeEdge: treeEdges) {
+            if (treeEdge.getParentNode().equals(node)) {
+                throw new TreeException("Node is parent of " + treeEdge.getChildNode().getNodeId() + ", " + treeEdge.getChildNode().getNodeDescr());
+            }
+        }
+        if (treeNodes.contains(node)) {
+            treeNodes.remove(node);
+        }
     }
 
     /**
