@@ -16,7 +16,7 @@ public class Tree {
 
     private final ArrayList<Node> treeNodes;
     private final ArrayList<Edge> treeEdges;
-    private ArrayList<String> treeLevelString;
+    private ArrayList<String> treeLevelString = new ArrayList<>();
     private final ArrayList<ArrayList<String>> treeLevelsString;
     private final int treeLevels, childPerNode;
 
@@ -53,7 +53,8 @@ public class Tree {
             return;
         }
         for (int i = 0; i < childPerNode; i++) {
-            String childNodeId = Labels.NODE_NAME.toString() + parentNode.getNodeId().replace(Labels.NODE_NAME.toString(), "") + String.valueOf(i);
+            String childNodeId = Labels.NODE_NAME.toString() + parentNode.getNodeId().replace(Labels.NODE_NAME
+                    .toString(), "") + String.valueOf(i);
             String childNodeDescr = childNodeId + Labels.LEVEL_NAME.toString() + String.valueOf(currentLevel);
             Node childNode = new Node(childNodeId, childNodeDescr);
             Edge edge = new Edge(parentNode, childNode);
@@ -62,7 +63,8 @@ public class Tree {
             }
             treeNodes.add(childNode);
             treeEdges.add(edge);
-            addTreeLevelForCsvOutput(childNodeId, childNodeDescr, parentNode.getNodeId(), Labels.LEVEL_NAME.toString().replace("_", "") + String.valueOf(currentLevel), treeLevelString);
+            addTreeLevelForCsvOutput(childNodeId, childNodeDescr, parentNode.getNodeId(), Labels.LEVEL_NAME.toString
+                    ().replace("_", "") + String.valueOf(currentLevel), treeLevelString);
             makeTree(childNode, currentLevel + 1);
         }
     }
@@ -76,7 +78,8 @@ public class Tree {
      * @param e
      * @param treeLevelString
      */
-    private void addTreeLevelForCsvOutput(String childNodeId, String childNodeDescr, String nodeId, String e, ArrayList<String> treeLevelString) {
+    private void addTreeLevelForCsvOutput(String childNodeId, String childNodeDescr, String nodeId, String e,
+                                          ArrayList<String> treeLevelString) {
         treeLevelString = new ArrayList();
         treeLevelString.add(childNodeId);
         treeLevelString.add(nodeId);
