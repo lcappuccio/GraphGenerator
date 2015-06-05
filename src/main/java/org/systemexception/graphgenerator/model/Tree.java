@@ -71,17 +71,17 @@ public class Tree {
 	/**
 	 * Creates a String representation of a tree level
 	 *
-	 * @param childNodeId
-	 * @param childNodeDescr
-	 * @param nodeId
-	 * @param e
+	 * @param childNodeId the children node id
+	 * @param childNodeDescr the children node description
+	 * @param nodeId the node id
+	 * @param levelDescr the level description
 	 */
-	private void addTreeLevelForCsvOutput(String childNodeId, String childNodeDescr, String nodeId, String e) {
+	private void addTreeLevelForCsvOutput(String childNodeId, String childNodeDescr, String nodeId, String levelDescr) {
 		ArrayList<String> treeLevelString = new ArrayList();
 		treeLevelString.add(childNodeId);
 		treeLevelString.add(nodeId);
 		treeLevelString.add(childNodeDescr);
-		treeLevelString.add(e);
+		treeLevelString.add(levelDescr);
 		treeLevelsString.add(treeLevelString);
 	}
 
@@ -102,7 +102,6 @@ public class Tree {
 	 * Removes a node from the tree
 	 *
 	 * @param node the node to remove
-	 * @throws TreeException
 	 */
 	public void removeNode(Node node) {
 		ArrayList<Node> childNodes = getChildNodes(node);
@@ -122,7 +121,7 @@ public class Tree {
 	/**
 	 * Removes an incoming edge to this node
 	 *
-	 * @param node
+	 * @param node the target node
 	 */
 	private void removeIncomingEdgeTo(Node node) {
 		List<Edge> edgesToRemove = new ArrayList<>();
@@ -140,7 +139,7 @@ public class Tree {
 	 * Returns the child nodes of a given node
 	 *
 	 * @param node the node to check
-	 * @return
+	 * @return the children node list
 	 */
 	public ArrayList<Node> getChildNodes(Node node) {
 		ArrayList<Node> childNodes = new ArrayList<>();
@@ -156,7 +155,7 @@ public class Tree {
 	 * Returns the parent node of a given node
 	 *
 	 * @param node the node to check
-	 * @return
+	 * @return the parent node
 	 */
 	public Node getParentNode(Node node) {
 		for (Edge edge : treeEdges) {

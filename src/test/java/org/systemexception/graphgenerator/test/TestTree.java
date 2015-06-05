@@ -19,7 +19,7 @@ import static org.junit.Assert.assertTrue;
 public class TestTree {
 
 	private Tree sut;
-	double totalNodes;
+	private double totalNodes;
 
 	@Test
 	public void createSimpleTree() throws NodeException, EdgeException, TreeException {

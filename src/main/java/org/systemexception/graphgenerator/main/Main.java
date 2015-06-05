@@ -82,7 +82,7 @@ public class Main {
      *
      * @param message the message to be thrown
      */
-    public static void exceptionHandler(String message) {
+    private static void exceptionHandler(String message) {
         throw new RuntimeException(message);
     }
 }
