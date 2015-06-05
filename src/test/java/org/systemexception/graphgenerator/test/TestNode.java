@@ -16,7 +16,6 @@ public class TestNode {
 
 	@Test(expected = org.systemexception.graphgenerator.exception.NodeException.class)
 	public void throwExceptionOnNullId() throws NodeException {
-		String nodeId = null;
 		String nodeDescr = "123";
 		sut = new Node(null, nodeDescr);
 	}
@@ -24,7 +23,6 @@ public class TestNode {
 	@Test(expected = org.systemexception.graphgenerator.exception.NodeException.class)
 	public void throwExceptionOnNullDescr() throws NodeException {
 		String nodeId = "123";
-		String nodeDescr = null;
 		sut = new Node(nodeId, null);
 	}
 
