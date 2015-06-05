@@ -53,14 +53,15 @@ public class TestTree {
 
     @Test(expected = TreeException.class)
     public void throwExceptionRemovingParentNode() throws NodeException, TreeException, EdgeException {
-        generateTree(1,3);
+        generateTree(1, 3);
         Node rootNode = sut.getNodes().get(0);
         sut.removeNode(rootNode);
     }
 
     /**
+     * Generates a tree
      *
-     * @param height the height of the tree level we're on
+     * @param height       the height of the tree level we're on
      * @param childPerNode how many childs per node
      * @throws NodeException
      * @throws EdgeException
