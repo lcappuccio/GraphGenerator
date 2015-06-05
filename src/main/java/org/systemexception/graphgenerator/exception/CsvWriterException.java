@@ -3,7 +3,6 @@
  *
  * @author lcappuccio
  * @date 21/04/2015 14:53
- *
  */
 package org.systemexception.graphgenerator.exception;
 

@@ -102,12 +102,13 @@ public class Tree {
 
     /**
      * Returns the child nodes of a given node
+     *
      * @param node the node to check
      * @return
      */
     public ArrayList<Node> getChildNodes(Node node) {
         ArrayList<Node> childNodes = new ArrayList<>();
-        for (Edge edge: treeEdges) {
+        for (Edge edge : treeEdges) {
             if (edge.getParentNode().equals(node)) {
                 childNodes.add(edge.getChildNode());
             }
