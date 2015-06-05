@@ -101,6 +101,11 @@ public class Tree {
         if (treeNodes.contains(node)) {
             treeNodes.remove(node);
         }
+        for (Edge edge: treeEdges) {
+            if (edge.getChildNode().equals(node)) {
+                treeEdges.remove(edge);
+            }
+        }
     }
 
     /**
