@@ -51,11 +51,25 @@ public class TestTree {
         assertTrue(!childNodes.isEmpty());
     }
 
-    @Test(expected = TreeException.class)
-    public void throwExceptionRemovingNodeWithChilds() throws NodeException, TreeException, EdgeException {
+    @Test
+    public void dontRemoveNodeWithChilds() throws NodeException, TreeException, EdgeException {
         generateTree(1, 3);
         Node rootNode = sut.getNodes().get(0);
         sut.removeNode(rootNode);
+        assertTrue(sut.getNodes().contains(rootNode));
+    }
+
+    @Test
+    public void emptyTree() throws NodeException, TreeException, EdgeException {
+        generateTree(1, 3);
+        while (sut.getNodes().size() > 0) {
+            for (int i = 0; i < sut.getNodes().size(); i++) {
+                Node nodeToRemove = sut.getNodes().get(i);
+                sut.removeNode(nodeToRemove);
+            }
+        }
+        assertTrue(sut.getNodes().size() == 0);
+        assertTrue(sut.getEdges().size() == 0);
     }
 
     /**

@@ -16,7 +16,6 @@ public class Tree {
 
     private final ArrayList<Node> treeNodes;
     private final ArrayList<Edge> treeEdges;
-    private ArrayList<String> treeLevelString = new ArrayList<>();
     private final ArrayList<ArrayList<String>> treeLevelsString;
     private final int treeLevels, childPerNode;
 
@@ -35,7 +34,7 @@ public class Tree {
         this.childPerNode = childPerNode;
         Node rootNode = new Node("1", "RootNode");
         treeNodes.add(rootNode);
-        addTreeLevelForCsvOutput("1", "RootNode", "0", "RootLevel", treeLevelString);
+        addTreeLevelForCsvOutput("1", "RootNode", "0", "RootLevel");
         makeTree(rootNode, 0);
     }
 
@@ -64,7 +63,7 @@ public class Tree {
             treeNodes.add(childNode);
             treeEdges.add(edge);
             addTreeLevelForCsvOutput(childNodeId, childNodeDescr, parentNode.getNodeId(), Labels.LEVEL_NAME.toString
-                    ().replace("_", "") + String.valueOf(currentLevel), treeLevelString);
+                    ().replace("_", "") + String.valueOf(currentLevel));
             makeTree(childNode, currentLevel + 1);
         }
     }
@@ -76,11 +75,9 @@ public class Tree {
      * @param childNodeDescr
      * @param nodeId
      * @param e
-     * @param treeLevelString
      */
-    private void addTreeLevelForCsvOutput(String childNodeId, String childNodeDescr, String nodeId, String e,
-                                          ArrayList<String> treeLevelString) {
-        treeLevelString = new ArrayList();
+    private void addTreeLevelForCsvOutput(String childNodeId, String childNodeDescr, String nodeId, String e) {
+        ArrayList<String> treeLevelString = new ArrayList();
         treeLevelString.add(childNodeId);
         treeLevelString.add(nodeId);
         treeLevelString.add(childNodeDescr);
@@ -95,16 +92,34 @@ public class Tree {
      * @throws TreeException
      */
     public void removeNode(Node node) throws TreeException {
+        ArrayList<Node> childNodes = getChildNodes(node);
         if (getChildNodes(node).size() > 0) {
-            throw new TreeException("Node " + getChildNodes(node).size() + " has child nodes");
-        }
-        if (treeNodes.contains(node)) {
-            treeNodes.remove(node);
-        }
-        for (Edge edge: treeEdges) {
-            if (edge.getChildNode().equals(node)) {
-                treeEdges.remove(edge);
+            for (Node childNode : childNodes) {
+                System.out.println("Found child node: " + childNode.getNodeId() + " for node " + node.getNodeId());
             }
+        } else {
+            if (treeNodes.contains(node)) {
+                System.out.println("Remove node: " + node.getNodeId());
+                treeNodes.remove(node);
+            }
+            removeIncomingEdgeTo(node);
+        }
+    }
+
+    /**
+     * Removes an incoming edge to this node
+     *
+     * @param node
+     */
+    private void removeIncomingEdgeTo(Node node) {
+        List<Edge> edgesToRemove = new ArrayList<>();
+        for (Edge edge : treeEdges) {
+            if (edge.getChildNode().equals(node)) {
+                edgesToRemove.add(edge);
+            }
+        }
+        for (Edge edgeToRemove : edgesToRemove) {
+            treeEdges.remove(edgeToRemove);
         }
     }
 
