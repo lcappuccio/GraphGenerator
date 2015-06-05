@@ -92,10 +92,8 @@ public class Tree {
      * @throws TreeException
      */
     public void removeNode(Node node) throws TreeException {
-        for (Edge treeEdge : treeEdges) {
-            if (treeEdge.getParentNode().equals(node)) {
-                throw new TreeException("Node is parent of " + treeEdge.getChildNode().getNodeId() + ", " + treeEdge.getChildNode().getNodeDescr());
-            }
+        if (getChildNodes(node).size() > 0) {
+            throw new TreeException("Node " + getChildNodes(node).size() + " has child nodes");
         }
         if (treeNodes.contains(node)) {
             treeNodes.remove(node);

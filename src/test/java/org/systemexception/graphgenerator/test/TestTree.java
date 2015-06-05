@@ -51,6 +51,13 @@ public class TestTree {
         assertTrue(!childNodes.isEmpty());
     }
 
+    @Test(expected = TreeException.class)
+    public void throwExceptionRemovingParentNode() throws NodeException, TreeException, EdgeException {
+        generateTree(1,3);
+        Node rootNode = sut.getNodes().get(0);
+        sut.removeNode(rootNode);
+    }
+
     /**
      *
      * @param height the height of the tree level we're on
