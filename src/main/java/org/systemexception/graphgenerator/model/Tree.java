@@ -62,7 +62,7 @@ public class Tree {
             }
             treeNodes.add(childNode);
             treeEdges.add(edge);
-            buildStringForTreeLevelDescription(childNodeId, childNodeDescr, parentNode.getNodeId(), Labels.LEVEL_NAME.toString().replace("_","") + String.valueOf(currentLevel), treeLevelString);
+            buildStringForTreeLevelDescription(childNodeId, childNodeDescr, parentNode.getNodeId(), Labels.LEVEL_NAME.toString().replace("_", "") + String.valueOf(currentLevel), treeLevelString);
             makeTree(childNode, currentLevel + 1);
         }
     }
@@ -87,11 +87,12 @@ public class Tree {
 
     /**
      * Removes a node from the tree
+     *
      * @param node the node to remove
      * @throws TreeException
      */
     public void removeNode(Node node) throws TreeException {
-        for (Edge treeEdge: treeEdges) {
+        for (Edge treeEdge : treeEdges) {
             if (treeEdge.getParentNode().equals(node)) {
                 throw new TreeException("Node is parent of " + treeEdge.getChildNode().getNodeId() + ", " + treeEdge.getChildNode().getNodeDescr());
             }
@@ -99,6 +100,21 @@ public class Tree {
         if (treeNodes.contains(node)) {
             treeNodes.remove(node);
         }
+    }
+
+    /**
+     * Returns the child nodes of a given node
+     * @param node the node to check
+     * @return
+     */
+    public ArrayList<Node> getChildNodes(Node node) {
+        ArrayList<Node> childNodes = new ArrayList<>();
+        for (Edge edge: treeEdges) {
+            if (edge.getParentNode().equals(node)) {
+                childNodes.add(edge.getChildNode());
+            }
+        }
+        return childNodes;
     }
 
     /**
