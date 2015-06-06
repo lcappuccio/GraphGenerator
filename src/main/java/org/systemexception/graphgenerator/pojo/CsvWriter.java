@@ -8,8 +8,10 @@ package org.systemexception.graphgenerator.pojo;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
+import org.systemexception.graphgenerator.api.Logger;
 import org.systemexception.graphgenerator.enums.CsvHeaders;
 import org.systemexception.graphgenerator.exception.CsvWriterException;
+import org.systemexception.graphgenerator.impl.LoggerImpl;
 import org.systemexception.graphgenerator.model.Tree;
 
 import java.io.File;
@@ -17,10 +19,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-import java.util.List;
 
 public class CsvWriter {
 
+    private static final Logger logger = LoggerImpl.getFor(CsvWriter.class);
     private final CSVFormat csvFormat;
     private CSVPrinter csvFilePrinter;
     private final String fileName;
@@ -50,7 +52,7 @@ public class CsvWriter {
             for (ArrayList<String> treeLevel : tree.getTreeLevelsString()) {
                 csvFilePrinter.printRecord(treeLevel);
             }
-            System.out.println("CSV file was created successfully");
+            logger.info("CSV file was created successfully");
         } catch (IOException e) {
             throw new CsvWriterException("Error while fileWriter/csvPrinter: " + e.getMessage());
         } finally {
@@ -59,7 +61,7 @@ public class CsvWriter {
                 outWriter.close();
                 csvFilePrinter.close();
             } catch (IOException e) {
-                e.printStackTrace(System.err);
+                logger.error("IOException", e);
             }
         }
     }
