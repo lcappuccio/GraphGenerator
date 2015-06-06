@@ -1,9 +1,9 @@
-package org.systemexception.graphgenerator.enums;
-
 /**
  * @author leo
  * @date 05/06/15 18:21
  */
+package org.systemexception.graphgenerator.enums;
+
 public enum Labels {
 
     NODE_NAME("Node_"),
