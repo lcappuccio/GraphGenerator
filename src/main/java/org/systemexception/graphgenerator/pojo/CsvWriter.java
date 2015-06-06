@@ -54,7 +54,7 @@ public class CsvWriter {
             }
             logger.info("CSV file was created successfully");
         } catch (IOException e) {
-            throw new CsvWriterException("Error while fileWriter/csvPrinter: " + e.getMessage());
+            logger.error("IOException", e);
         } finally {
             try {
                 outWriter.flush();
