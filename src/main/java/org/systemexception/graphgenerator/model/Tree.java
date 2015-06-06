@@ -4,16 +4,19 @@
  */
 package org.systemexception.graphgenerator.model;
 
+import org.systemexception.graphgenerator.api.Logger;
 import org.systemexception.graphgenerator.enums.Labels;
 import org.systemexception.graphgenerator.exception.EdgeException;
 import org.systemexception.graphgenerator.exception.NodeException;
 import org.systemexception.graphgenerator.exception.TreeException;
+import org.systemexception.graphgenerator.impl.LoggerImpl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Tree {
 
+	private static final Logger logger = LoggerImpl.getFor(Tree.class);
 	private final ArrayList<Node> treeNodes;
 	private final ArrayList<Edge> treeEdges;
 	private final ArrayList<ArrayList<String>> treeLevelsString;
@@ -107,11 +110,11 @@ public class Tree {
 		ArrayList<Node> childNodes = getChildNodes(node);
 		if (getChildNodes(node).size() > 0) {
 			for (Node childNode : childNodes) {
-				System.out.println("Found child node: " + childNode.getNodeId() + " for node " + node.getNodeId());
+				logger.info("Found child node: " + childNode.getNodeId() + " for node " + node.getNodeId());
 			}
 		} else {
 			if (treeNodes.contains(node)) {
-				System.out.println("Remove node: " + node.getNodeId());
+                logger.info("Remove node: " + node.getNodeId());
 				treeNodes.remove(node);
 			}
 			removeIncomingEdgeTo(node);

@@ -4,21 +4,19 @@
  */
 package org.systemexception.graphgenerator.main;
 
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.GnuParser;
-import org.apache.commons.cli.HelpFormatter;
-import org.apache.commons.cli.Options;
-import org.apache.commons.cli.ParseException;
+import org.apache.commons.cli.*;
+import org.systemexception.graphgenerator.api.Logger;
 import org.systemexception.graphgenerator.exception.CsvWriterException;
 import org.systemexception.graphgenerator.exception.EdgeException;
 import org.systemexception.graphgenerator.exception.NodeException;
 import org.systemexception.graphgenerator.exception.TreeException;
+import org.systemexception.graphgenerator.impl.LoggerImpl;
 import org.systemexception.graphgenerator.model.Tree;
 import org.systemexception.graphgenerator.pojo.CsvWriter;
 
 public class Main {
 
+    private static final Logger logger = LoggerImpl.getFor(Main.class);
     private static int treeLevels, childPerNode;
     private static String outputFileName;
     private static final String HELP_OPTION = "h", OUTPUT_FILENAME = "o", TREE_LEVELS = "l", CHILD_PER_NODE = "c";
@@ -58,21 +56,21 @@ public class Main {
             exceptionHandler("Tree height/levels is mandatory");
         } else {
             treeLevels = Integer.parseInt(cmdLine.getOptionValue(TREE_LEVELS));
-            System.out.println("Tree levels: " + treeLevels);
+            logger.info("Tree levels: " + treeLevels);
         }
         if (!cmdLine.hasOption(CHILD_PER_NODE)) {
             helpFormatter.printHelp(Main.class.getName(), options, true);
             exceptionHandler("Child per nodes amount is mandatory");
         } else {
             childPerNode = Integer.parseInt(cmdLine.getOptionValue(CHILD_PER_NODE));
-            System.out.println("Child per node: " + childPerNode);
+            logger.info("Child per node: " + childPerNode);
         }
         if (!cmdLine.hasOption(OUTPUT_FILENAME)) {
             helpFormatter.printHelp(Main.class.getName(), options, true);
             exceptionHandler("Output filename is mandatory");
         } else {
             outputFileName = cmdLine.getOptionValue(OUTPUT_FILENAME);
-            System.out.println("Filename: " + outputFileName);
+            logger.info("Filename: " + outputFileName);
         }
 
     }
@@ -83,6 +81,6 @@ public class Main {
      * @param message the message to be thrown
      */
     private static void exceptionHandler(String message) {
-        throw new RuntimeException(message);
+        logger.error(message, new RuntimeException());
     }
 }
