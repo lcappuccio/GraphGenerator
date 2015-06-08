@@ -5,14 +5,14 @@
 package org.systemexception.graphgenerator.main;
 
 import org.apache.commons.cli.*;
-import org.systemexception.graphgenerator.api.Logger;
 import org.systemexception.graphgenerator.exception.CsvWriterException;
 import org.systemexception.graphgenerator.exception.EdgeException;
 import org.systemexception.graphgenerator.exception.NodeException;
 import org.systemexception.graphgenerator.exception.TreeException;
-import org.systemexception.graphgenerator.impl.LoggerImpl;
 import org.systemexception.graphgenerator.model.Tree;
 import org.systemexception.graphgenerator.pojo.CsvWriter;
+import org.systemexception.logger.api.Logger;
+import org.systemexception.logger.impl.LoggerImpl;
 
 public class Main {
 

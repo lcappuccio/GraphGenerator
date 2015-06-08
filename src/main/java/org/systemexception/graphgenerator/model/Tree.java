@@ -4,12 +4,12 @@
  */
 package org.systemexception.graphgenerator.model;
 
-import org.systemexception.graphgenerator.api.Logger;
 import org.systemexception.graphgenerator.enums.Labels;
 import org.systemexception.graphgenerator.exception.EdgeException;
 import org.systemexception.graphgenerator.exception.NodeException;
 import org.systemexception.graphgenerator.exception.TreeException;
-import org.systemexception.graphgenerator.impl.LoggerImpl;
+import org.systemexception.logger.api.Logger;
+import org.systemexception.logger.impl.LoggerImpl;
 
 import java.util.ArrayList;
 import java.util.List;
