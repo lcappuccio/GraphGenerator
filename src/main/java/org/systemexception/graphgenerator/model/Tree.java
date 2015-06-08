@@ -65,6 +65,7 @@ public class Tree {
 			}
 			treeNodes.add(childNode);
 			treeEdges.add(edge);
+			logger.info("Added node " + childNodeDescr + " with parent " + parentNode.getNodeId());
 			addTreeLevelForCsvOutput(childNodeId, childNodeDescr, parentNode.getNodeId(), Labels.LEVEL_NAME.toString
 					().replace("_", "") + String.valueOf(currentLevel));
 			makeTree(childNode, currentLevel + 1);
@@ -74,10 +75,10 @@ public class Tree {
 	/**
 	 * Creates a String representation of a tree level
 	 *
-	 * @param childNodeId the children node id
+	 * @param childNodeId    the children node id
 	 * @param childNodeDescr the children node description
-	 * @param nodeId the node id
-	 * @param levelDescr the level description
+	 * @param nodeId         the node id
+	 * @param levelDescr     the level description
 	 */
 	private void addTreeLevelForCsvOutput(String childNodeId, String childNodeDescr, String nodeId, String levelDescr) {
 		ArrayList<String> treeLevelString = new ArrayList();
@@ -114,7 +115,7 @@ public class Tree {
 			}
 		} else {
 			if (treeNodes.contains(node)) {
-                logger.info("Remove node: " + node.getNodeId());
+				logger.info("Remove node: " + node.getNodeId());
 				treeNodes.remove(node);
 			}
 			removeIncomingEdgeTo(node);
