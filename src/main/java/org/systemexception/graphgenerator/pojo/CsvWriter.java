@@ -8,11 +8,11 @@ package org.systemexception.graphgenerator.pojo;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
-import org.systemexception.graphgenerator.api.Logger;
 import org.systemexception.graphgenerator.enums.CsvHeaders;
 import org.systemexception.graphgenerator.exception.CsvWriterException;
-import org.systemexception.graphgenerator.impl.LoggerImpl;
 import org.systemexception.graphgenerator.model.Tree;
+import org.systemexception.logger.api.Logger;
+import org.systemexception.logger.impl.LoggerImpl;
 
 import java.io.File;
 import java.io.FileOutputStream;
