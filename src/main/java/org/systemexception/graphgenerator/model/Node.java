@@ -5,38 +5,45 @@
 package org.systemexception.graphgenerator.model;
 
 import org.systemexception.graphgenerator.exception.NodeException;
+import org.systemexception.logger.api.Logger;
+import org.systemexception.logger.impl.LoggerImpl;
 
 public class Node {
 
-    private final String nodeId, nodeDescr;
+	private static final Logger logger = LoggerImpl.getFor(Node.class);
+	private final String nodeId, nodeDescr;
 
-    public Node(String nodeId, String nodeDescr) throws NodeException {
-        if (nodeId == null || nodeDescr == null) {
-            throw new NodeException("Null value for nodes");
-        }
-        if (!isNamingConventionCompliant(nodeId)) {
-            throw new NodeException("Invalid chars on nodeId");
-        }
-        this.nodeId = nodeId;
-        this.nodeDescr = nodeDescr;
-    }
+	public Node(String nodeId, String nodeDescr) throws NodeException {
+		if (nodeId == null || nodeDescr == null) {
+			NodeException nodeException = new NodeException("Null values for nodes");
+			logger.error(nodeException.getMessage(), nodeException);
+			throw nodeException;
+		}
+		if (!isNamingConventionCompliant(nodeId)) {
+			NodeException nodeException = new NodeException("Invalid chars on nodeId");
+			logger.error(nodeException.getMessage(), nodeException);
+			throw nodeException;
+		}
+		this.nodeId = nodeId;
+		this.nodeDescr = nodeDescr;
+	}
 
-    public String getNodeId() {
-        return nodeId;
-    }
+	public String getNodeId() {
+		return nodeId;
+	}
 
-    public String getNodeDescr() {
-        return nodeDescr;
-    }
+	public String getNodeDescr() {
+		return nodeDescr;
+	}
 
-    /**
-     * Test for strictly naming convention id (NodeLevel_ID)
-     *
-     * @param nodeId the node id
-     * @return the boolean for name validation
-     */
-    private boolean isNamingConventionCompliant(String nodeId) {
-        String pattern = "^[a-zA-Z0-9_]*$";
-        return nodeId.matches(pattern);
-    }
+	/**
+	 * Test for strictly naming convention id (NodeLevel_ID)
+	 *
+	 * @param nodeId the node id
+	 * @return the boolean for name validation
+	 */
+	private boolean isNamingConventionCompliant(String nodeId) {
+		String pattern = "^[a-zA-Z0-9_]*$";
+		return nodeId.matches(pattern);
+	}
 }
