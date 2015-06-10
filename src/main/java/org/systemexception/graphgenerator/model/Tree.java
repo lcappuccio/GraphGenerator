@@ -61,7 +61,9 @@ public class Tree {
 			Node childNode = new Node(childNodeId, childNodeDescr);
 			Edge edge = new Edge(parentNode, childNode);
 			if (nodeExists(childNode.getNodeId())) {
-				throw new TreeException("NodeId " + childNode.getNodeId() + " already exists");
+				TreeException treeException = new TreeException("NodeId " + childNode.getNodeId() + " already exists");
+				logger.error(treeException.getMessage(), treeException);
+				throw treeException;
 			}
 			treeNodes.add(childNode);
 			treeEdges.add(edge);
