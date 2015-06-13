@@ -4,6 +4,7 @@
  */
 package org.systemexception.graphgenerator.model;
 
+import org.systemexception.graphgenerator.enums.ErrorCodes;
 import org.systemexception.graphgenerator.enums.Labels;
 import org.systemexception.graphgenerator.exception.EdgeException;
 import org.systemexception.graphgenerator.exception.NodeException;
@@ -52,8 +53,7 @@ public class Tree {
 	 */
 	private void makeTree(Node parentNode, int currentLevel) throws NodeException, EdgeException, TreeException {
 		if (childPerNode > 10) {
-			TreeException treeException = new TreeException("Trees with more than 10 childs per node are not " +
-					"supported");
+			TreeException treeException = new TreeException(ErrorCodes.TREE_10_CHILDS_PER_NODE.toString());
 			logger.error(treeException.getMessage(), treeException);
 			throw treeException;
 		}
@@ -66,8 +66,9 @@ public class Tree {
 			String childNodeDescr = childNodeId + Labels.LEVEL_NAME.toString() + String.valueOf(currentLevel);
 			Node childNode = new Node(childNodeId, childNodeDescr);
 			Edge edge = new Edge(parentNode, childNode);
-			if (nodeExists(childNode.getNodeId())) {
-				TreeException treeException = new TreeException("NodeId " + childNode.getNodeId() + " already exists");
+			if (nodeExists(childNodeId)) {
+				TreeException treeException = new TreeException(ErrorCodes.TREE_NODE_ALREADY_EXISTS.toString() +
+						childNodeId);
 				logger.error(treeException.getMessage(), treeException);
 				throw treeException;
 			}
@@ -88,7 +89,8 @@ public class Tree {
 	 * @param nodeId         the node id
 	 * @param levelDescr     the level description
 	 */
-	private void addTreeLevelForCsvOutput(String childNodeId, String childNodeDescr, String nodeId, String levelDescr) {
+	private void addTreeLevelForCsvOutput(String childNodeId, String childNodeDescr, String nodeId, String
+			levelDescr) {
 		ArrayList<String> treeLevelString = new ArrayList();
 		treeLevelString.add(childNodeId);
 		treeLevelString.add(nodeId);
