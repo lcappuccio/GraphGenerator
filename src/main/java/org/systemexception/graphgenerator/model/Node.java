@@ -4,6 +4,7 @@
  */
 package org.systemexception.graphgenerator.model;
 
+import org.systemexception.graphgenerator.enums.ErrorCodes;
 import org.systemexception.graphgenerator.exception.NodeException;
 import org.systemexception.logger.api.Logger;
 import org.systemexception.logger.impl.LoggerImpl;
@@ -15,12 +16,12 @@ public class Node {
 
 	public Node(String nodeId, String nodeDescr) throws NodeException {
 		if (nodeId == null || nodeDescr == null) {
-			NodeException nodeException = new NodeException("Null values for nodes");
+			NodeException nodeException = new NodeException(ErrorCodes.NODE_NULL_VALUE.toString());
 			logger.error(nodeException.getMessage(), nodeException);
 			throw nodeException;
 		}
 		if (!isNamingConventionCompliant(nodeId)) {
-			NodeException nodeException = new NodeException("Invalid chars on nodeId");
+			NodeException nodeException = new NodeException(ErrorCodes.NODE_INVALID_CHARS.toString());
 			logger.error(nodeException.getMessage(), nodeException);
 			throw nodeException;
 		}
