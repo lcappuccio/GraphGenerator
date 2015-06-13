@@ -90,6 +90,11 @@ public class TestTree {
 		assertEquals(sut.getParentNode(parentNode), null);
 	}
 
+	@Test (expected = TreeException.class)
+	public void refuseMoreThan10ChildPerNode() throws NodeException, TreeException, EdgeException {
+		generateTree(1,11);
+	}
+
 
 	/**
 	 * Generates a tree

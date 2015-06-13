@@ -51,6 +51,12 @@ public class Tree {
 	 * @throws TreeException
 	 */
 	private void makeTree(Node parentNode, int currentLevel) throws NodeException, EdgeException, TreeException {
+		if (childPerNode > 10) {
+			TreeException treeException = new TreeException("Trees with more than 10 childs per node are not " +
+					"supported");
+			logger.error(treeException.getMessage(), treeException);
+			throw treeException;
+		}
 		if (currentLevel == treeLevels) {
 			return;
 		}
