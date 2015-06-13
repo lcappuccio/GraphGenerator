@@ -4,6 +4,7 @@
  */
 package org.systemexception.graphgenerator.model;
 
+import org.systemexception.graphgenerator.enums.ErrorCodes;
 import org.systemexception.graphgenerator.exception.EdgeException;
 import org.systemexception.logger.api.Logger;
 import org.systemexception.logger.impl.LoggerImpl;
@@ -15,7 +16,7 @@ public class Edge {
 
     public Edge(Node parentNode, Node childNode) throws EdgeException {
         if (parentNode == null || childNode == null) {
-	        EdgeException edgeException = new EdgeException("Null nodes not allowed");
+	        EdgeException edgeException = new EdgeException(ErrorCodes.EDGE_NULL_NODE.toString());
 	        logger.error(edgeException.getMessage(), edgeException);
             throw edgeException;
         }

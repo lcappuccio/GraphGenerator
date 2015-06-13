@@ -65,9 +65,6 @@ public class Main {
 		} else {
 			childPerNode = Integer.parseInt(cmdLine.getOptionValue(CHILD_PER_NODE));
 			logger.info("Child per node: " + childPerNode);
-			if (Integer.parseInt(cmdLine.getOptionValue(CHILD_PER_NODE)) >= 10) {
-				exceptionHandler("No more than 10 childs per node supported");
-			}
 		}
 		if (!cmdLine.hasOption(OUTPUT_FILENAME)) {
 			helpFormatter.printHelp(Main.class.getName(), options, true);
