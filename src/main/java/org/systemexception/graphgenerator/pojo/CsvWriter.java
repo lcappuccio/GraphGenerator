@@ -9,7 +9,6 @@ package org.systemexception.graphgenerator.pojo;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.systemexception.graphgenerator.enums.CsvHeaders;
-import org.systemexception.graphgenerator.exception.CsvWriterException;
 import org.systemexception.graphgenerator.model.Tree;
 import org.systemexception.logger.api.Logger;
 import org.systemexception.logger.impl.LoggerImpl;
@@ -43,9 +42,8 @@ public class CsvWriter {
      * Writes a csv file with the tree
      *
      * @param tree the tree to write to the file
-     * @throws org.systemexception.graphgenerator.exception.CsvWriterException
      */
-    public void writeFile(Tree tree) throws CsvWriterException {
+    public void writeFile(Tree tree) {
         try {
             outWriter = new OutputStreamWriter(new FileOutputStream(new File(fileName)), "UTF-8");
             csvFilePrinter = new CSVPrinter(outWriter, csvFormat);
