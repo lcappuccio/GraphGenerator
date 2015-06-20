@@ -31,6 +31,11 @@ public class Tree {
 	 * @throws TreeException
 	 */
 	public Tree(int levels, int childPerNode) throws NodeException, EdgeException, TreeException {
+		if (childPerNode > 10) {
+			TreeException treeException = new TreeException(ErrorCodes.TREE_10_CHILDS_PER_NODE.toString());
+			logger.error(treeException.getMessage(), treeException);
+			throw treeException;
+		}
 		treeNodes = new ArrayList();
 		treeEdges = new ArrayList();
 		treeLevelsString = new ArrayList();
@@ -52,11 +57,6 @@ public class Tree {
 	 * @throws TreeException
 	 */
 	private void makeTree(Node parentNode, int currentLevel) throws NodeException, EdgeException, TreeException {
-		if (childPerNode > 10) {
-			TreeException treeException = new TreeException(ErrorCodes.TREE_10_CHILDS_PER_NODE.toString());
-			logger.error(treeException.getMessage(), treeException);
-			throw treeException;
-		}
 		if (currentLevel == treeLevels) {
 			return;
 		}
