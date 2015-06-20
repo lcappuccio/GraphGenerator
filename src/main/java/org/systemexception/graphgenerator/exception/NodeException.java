@@ -6,12 +6,12 @@ package org.systemexception.graphgenerator.exception;
 
 public class NodeException extends Exception {
 
-    /**
-     * Constructs an instance of <code>NodeException</code> with the specified detail message.
-     *
-     * @param msg the detail message.
-     */
-    public NodeException(String msg) {
-        super(msg);
-    }
+	/**
+	 * Constructs an instance of <code>NodeException</code> with the specified detail message.
+	 *
+	 * @param msg the detail message.
+	 */
+	public NodeException(String msg) {
+		super(msg);
+	}
 }

@@ -83,16 +83,16 @@ public class TestTree {
 
 	@Test
 	public void getParentNode() throws NodeException, TreeException, EdgeException {
-		generateTree(1,1);
+		generateTree(1, 1);
 		Node childNode = sut.getNodes().get(sut.getNodes().size() - 1);
 		Node parentNode = sut.getNodes().get(0);
 		assertEquals(sut.getParentNode(childNode), parentNode);
 		assertEquals(sut.getParentNode(parentNode), null);
 	}
 
-	@Test (expected = TreeException.class)
+	@Test(expected = TreeException.class)
 	public void refuseMoreThan10ChildPerNode() throws NodeException, TreeException, EdgeException {
-		generateTree(1,11);
+		generateTree(1, 11);
 	}
 
 

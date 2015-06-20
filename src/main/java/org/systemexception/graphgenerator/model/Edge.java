@@ -14,22 +14,22 @@ public class Edge {
 	private static final Logger logger = LoggerImpl.getFor(Edge.class);
 	private final Node parentNode, childNode;
 
-    public Edge(Node parentNode, Node childNode) throws EdgeException {
-        if (parentNode == null || childNode == null) {
-	        EdgeException edgeException = new EdgeException(ErrorCodes.EDGE_NULL_NODE.toString());
-	        logger.error(edgeException.getMessage(), edgeException);
-            throw edgeException;
-        }
-        this.parentNode = parentNode;
-        this.childNode = childNode;
-    }
+	public Edge(Node parentNode, Node childNode) throws EdgeException {
+		if (parentNode == null || childNode == null) {
+			EdgeException edgeException = new EdgeException(ErrorCodes.EDGE_NULL_NODE.toString());
+			logger.error(edgeException.getMessage(), edgeException);
+			throw edgeException;
+		}
+		this.parentNode = parentNode;
+		this.childNode = childNode;
+	}
 
-    public Node getParentNode() {
-        return parentNode;
-    }
+	public Node getParentNode() {
+		return parentNode;
+	}
 
-    public Node getChildNode() {
-        return childNode;
-    }
+	public Node getChildNode() {
+		return childNode;
+	}
 
 }

@@ -12,17 +12,17 @@ import org.systemexception.graphgenerator.model.Node;
 
 public class TestEdge {
 
-    private Edge sut;
+	private Edge sut;
 
-    @Test(expected = org.systemexception.graphgenerator.exception.EdgeException.class)
-    public void throwExceptionOnNullParentNode() throws NodeException, EdgeException {
-        Node childNode = new Node("ABC", "ABC");
-        sut = new Edge(null, childNode);
-    }
+	@Test(expected = org.systemexception.graphgenerator.exception.EdgeException.class)
+	public void throwExceptionOnNullParentNode() throws NodeException, EdgeException {
+		Node childNode = new Node("ABC", "ABC");
+		sut = new Edge(null, childNode);
+	}
 
-    @Test(expected = org.systemexception.graphgenerator.exception.EdgeException.class)
-    public void throwExceptionOnNullChildNode() throws NodeException, EdgeException {
-        Node parentNode = new Node("ABC", "ABC");
-        sut = new Edge(parentNode, null);
-    }
+	@Test(expected = org.systemexception.graphgenerator.exception.EdgeException.class)
+	public void throwExceptionOnNullChildNode() throws NodeException, EdgeException {
+		Node parentNode = new Node("ABC", "ABC");
+		sut = new Edge(parentNode, null);
+	}
 }

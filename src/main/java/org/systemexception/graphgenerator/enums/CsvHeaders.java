@@ -6,20 +6,20 @@ package org.systemexception.graphgenerator.enums;
 
 public enum CsvHeaders {
 
-    NODE_ID("NODE_ID"),
-    PARENT_ID("PARENT_ID"),
-    DESCRIPTION("DESCRIPTION"),
-    TYPE("TYPE");
+	NODE_ID("NODE_ID"),
+	PARENT_ID("PARENT_ID"),
+	DESCRIPTION("DESCRIPTION"),
+	TYPE("TYPE");
 
-    private final String csvHeader;
+	private final String csvHeader;
 
-    CsvHeaders(String csvHeader) {
-        this.csvHeader = csvHeader;
-    }
+	CsvHeaders(String csvHeader) {
+		this.csvHeader = csvHeader;
+	}
 
-    @Override
-    public String toString() {
-        return csvHeader;
-    }
+	@Override
+	public String toString() {
+		return csvHeader;
+	}
 
 }
