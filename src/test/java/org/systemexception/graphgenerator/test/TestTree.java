@@ -40,12 +40,6 @@ public class TestTree {
 	}
 
 	@Test
-	public void createModerateTree() throws NodeException, EdgeException, TreeException {
-		generateTree(5, 6);
-		assertTrue(totalNodes == sut.getNodes().size());
-	}
-
-	@Test
 	public void checkIfRootHasChilds() throws NodeException, EdgeException, TreeException {
 		generateTree(1, 3);
 		ArrayList<Node> childNodes = sut.getChildNodes(sut.getNodes().get(0));
@@ -75,7 +69,7 @@ public class TestTree {
 
 	@Test
 	public void emptyTreeInternalMethod() throws NodeException, TreeException, EdgeException {
-		generateTree(4, 6);
+		generateTree(3, 3);
 		sut.emptyTree();
 		assertTrue(sut.getNodes().size() == 0);
 		assertTrue(sut.getEdges().size() == 0);
