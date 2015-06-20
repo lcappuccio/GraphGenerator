@@ -120,6 +120,7 @@ public class Tree {
 	public void removeNode(Node node) {
 		ArrayList<Node> childNodes = getChildNodes(node);
 		if (getChildNodes(node).size() > 0) {
+			logger.info("Can't remove node " + node.getNodeId() + " because it has childs");
 			for (Node childNode : childNodes) {
 				logger.info("Found child node: " + childNode.getNodeId() + " for node " + node.getNodeId());
 			}
