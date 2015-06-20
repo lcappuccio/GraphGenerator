@@ -5,7 +5,6 @@
 package org.systemexception.graphgenerator.main;
 
 import org.apache.commons.cli.*;
-import org.systemexception.graphgenerator.exception.CsvWriterException;
 import org.systemexception.graphgenerator.exception.EdgeException;
 import org.systemexception.graphgenerator.exception.NodeException;
 import org.systemexception.graphgenerator.exception.TreeException;
@@ -21,7 +20,7 @@ public class Main {
 	private static String outputFileName;
 	private static final String HELP_OPTION = "h", OUTPUT_FILENAME = "o", TREE_LEVELS = "l", CHILD_PER_NODE = "c";
 
-	public static void main(String[] args) throws ParseException, NodeException, EdgeException, TreeException, CsvWriterException {
+	public static void main(String[] args) throws ParseException, NodeException, EdgeException, TreeException {
 
 		// Validate launch options
 		validateOptions(args);

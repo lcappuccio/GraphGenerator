@@ -6,12 +6,12 @@ package org.systemexception.graphgenerator.exception;
 
 public class EdgeException extends Exception {
 
-    /**
-     * Constructs an instance of <code>EdgeException</code> with the specified detail message.
-     *
-     * @param msg the detail message.
-     */
-    public EdgeException(String msg) {
-        super(msg);
-    }
+	/**
+	 * Constructs an instance of <code>EdgeException</code> with the specified detail message.
+	 *
+	 * @param msg the detail message.
+	 */
+	public EdgeException(String msg) {
+		super(msg);
+	}
 }

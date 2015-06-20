@@ -31,6 +31,11 @@ public class Tree {
 	 * @throws TreeException
 	 */
 	public Tree(int levels, int childPerNode) throws NodeException, EdgeException, TreeException {
+		if (childPerNode > 10) {
+			TreeException treeException = new TreeException(ErrorCodes.TREE_10_CHILDS_PER_NODE.toString());
+			logger.error(treeException.getMessage(), treeException);
+			throw treeException;
+		}
 		treeNodes = new ArrayList();
 		treeEdges = new ArrayList();
 		treeLevelsString = new ArrayList();
@@ -52,11 +57,6 @@ public class Tree {
 	 * @throws TreeException
 	 */
 	private void makeTree(Node parentNode, int currentLevel) throws NodeException, EdgeException, TreeException {
-		if (childPerNode > 10) {
-			TreeException treeException = new TreeException(ErrorCodes.TREE_10_CHILDS_PER_NODE.toString());
-			logger.error(treeException.getMessage(), treeException);
-			throw treeException;
-		}
 		if (currentLevel == treeLevels) {
 			return;
 		}
@@ -120,6 +120,7 @@ public class Tree {
 	public void removeNode(Node node) {
 		ArrayList<Node> childNodes = getChildNodes(node);
 		if (getChildNodes(node).size() > 0) {
+			logger.info("Can't remove node " + node.getNodeId() + " because it has childs");
 			for (Node childNode : childNodes) {
 				logger.info("Found child node: " + childNode.getNodeId() + " for node " + node.getNodeId());
 			}

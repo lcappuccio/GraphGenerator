@@ -11,9 +11,9 @@ public enum Labels {
 
     private final String label;
 
-    Labels(String label) {
-        this.label = label;
-    }
+	Labels(String label) {
+		this.label = label;
+	}
 
     @Override
     public String toString() {
