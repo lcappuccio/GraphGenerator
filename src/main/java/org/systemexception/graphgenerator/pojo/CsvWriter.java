@@ -31,7 +31,7 @@ public class CsvWriter {
 	 * @param fileName the filename
 	 */
 	public CsvWriter(String fileName) {
-		String[] headerMapping = new String[]{CsvHeaders.NODE_ID.toString(), CsvHeaders.PARENT_ID.toString(),
+		String[] headerMapping = new String[]{CsvHeaders.PARENT_ID.toString(), CsvHeaders.NODE_ID.toString(),
 				CsvHeaders.DESCRIPTION.toString(), CsvHeaders.TYPE.toString()};
 		this.csvFormat = CSVFormat.RFC4180.withHeader(headerMapping).withSkipHeaderRecord(false).withRecordSeparator
 				(System.lineSeparator());

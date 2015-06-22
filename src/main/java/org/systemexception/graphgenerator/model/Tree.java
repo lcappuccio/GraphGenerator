@@ -92,8 +92,8 @@ public class Tree {
 	private void addTreeLevelForCsvOutput(String childNodeId, String childNodeDescr, String nodeId, String
 			levelDescr) {
 		ArrayList<String> treeLevelString = new ArrayList();
-		treeLevelString.add(childNodeId);
 		treeLevelString.add(nodeId);
+		treeLevelString.add(childNodeId);
 		treeLevelString.add(childNodeDescr);
 		treeLevelString.add(levelDescr);
 		treeLevelsString.add(treeLevelString);
