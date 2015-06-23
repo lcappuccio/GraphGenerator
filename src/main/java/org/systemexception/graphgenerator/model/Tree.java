@@ -84,17 +84,17 @@ public class Tree {
 	/**
 	 * Creates a String representation of a tree level
 	 *
-	 * @param childNodeId    the children node id
-	 * @param childNodeDescr the children node description
-	 * @param nodeId         the node id
-	 * @param levelDescr     the level description
+	 * @param nodeId       the node id
+	 * @param nodeDescr    the node description
+	 * @param parentNodeId the parent node id
+	 * @param levelDescr   the level description
 	 */
-	private void addTreeLevelForCsvOutput(String childNodeId, String childNodeDescr, String nodeId, String
+	private void addTreeLevelForCsvOutput(String nodeId, String nodeDescr, String parentNodeId, String
 			levelDescr) {
 		ArrayList<String> treeLevelString = new ArrayList();
+		treeLevelString.add(parentNodeId);
 		treeLevelString.add(nodeId);
-		treeLevelString.add(childNodeId);
-		treeLevelString.add(childNodeDescr);
+		treeLevelString.add(nodeDescr);
 		treeLevelString.add(levelDescr);
 		treeLevelsString.add(treeLevelString);
 	}
