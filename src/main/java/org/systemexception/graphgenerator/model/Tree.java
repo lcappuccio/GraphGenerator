@@ -103,14 +103,12 @@ public class Tree {
 	 * Empties a tree
 	 */
 	public void emptyTree() {
-		Node startingNode = treeNodes.get(treeNodes.size() - 1);
-		while (treeNodes.size() > 0) {
-			removeNode(startingNode);
-			if (treeNodes.size() > 0) {
-				emptyTree();
-			}
-		}
+		logger.info("Emptying tree");
+		treeEdges.clear();
+		treeNodes.clear();
+		treeLevelsString.clear();
 	}
+
 
 	/**
 	 * Removes a node from the tree
