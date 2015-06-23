@@ -8,5 +8,5 @@ java -jar graphgenerator.jar -h
 At the moment no more than 10 child nodes per node are supported, if the limitation is removed you will get a checked
  exception.
 
-## ToDo
-Integrate with [OrientPlayGround](https://github.com/lcappuccio/OrientPlayGround)
+## Extension
+Can be integrated with [OrientPlayGround](https://github.com/lcappuccio/OrientPlayGround)
