@@ -44,7 +44,7 @@ public class Tree {
 			throw treeException;
 		}
 		if (!nodeExists(parentNode.getNodeId())) {
-			TreeException treeException = new TreeException(ErrorCodes.NODE_NOT_EXISTS.toString());
+			TreeException treeException = new TreeException(ErrorCodes.NODE_DOES_NOT_EXIST.toString());
 			logger.error(treeException.getMessage(), treeException);
 			throw treeException;
 		}

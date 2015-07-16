@@ -12,7 +12,7 @@ public enum ErrorCodes {
 	NODE_NULL_VALUE("Null values for nodes"),
 	NODE_INVALID_CHARS("Invalid chars on nodeId"),
 	NODE_ALREADY_EXISTS("NodeId already exists: "),
-	NODE_NOT_EXISTS("Node does not exist");
+	NODE_DOES_NOT_EXIST("Node does not exist");
 
 	private final String errorCode;
 
