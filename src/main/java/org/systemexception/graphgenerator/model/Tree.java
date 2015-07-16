@@ -56,7 +56,6 @@ public class Tree {
 		}
 	}
 
-
 	/**
 	 * Removes an incoming edge to this node
 	 *
