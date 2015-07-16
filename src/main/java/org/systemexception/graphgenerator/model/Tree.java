@@ -23,4 +23,19 @@ public class Tree {
 		Node rootNode = new Node("1", Labels.ROOT_NODE_NAME.toString());
 		treeNodes.add(rootNode);
 	}
+
+	/**
+	 * Verify if nodeId already exists in tree
+	 *
+	 * @param nodeId the node id to check
+	 * @return the boolean verification value
+	 */
+	public boolean nodeExists(String nodeId) {
+		for (Node treeNode : treeNodes) {
+			if (treeNode.getNodeId().equals(nodeId)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
