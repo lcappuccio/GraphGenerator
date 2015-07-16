@@ -1,8 +1,10 @@
 package org.systemexception.graphgenerator.model;
 
+import org.systemexception.graphgenerator.enums.ErrorCodes;
 import org.systemexception.graphgenerator.enums.Labels;
 import org.systemexception.graphgenerator.exception.EdgeException;
 import org.systemexception.graphgenerator.exception.NodeException;
+import org.systemexception.graphgenerator.exception.TreeException;
 import org.systemexception.logger.api.Logger;
 import org.systemexception.logger.impl.LoggerImpl;
 
@@ -27,9 +29,15 @@ public class Tree {
 		treeNodes.add(rootNode);
 	}
 
-	public void addNode(Node node, Node parentNode) throws EdgeException {
-		treeNodes.add(node);
+	public void addNode(Node node, Node parentNode) throws EdgeException, TreeException {
+		if (nodeExists(node.getNodeId())) {
+			TreeException treeException = new TreeException(ErrorCodes.TREE_NODE_ALREADY_EXISTS.toString() +
+					node);
+			logger.error(treeException.getMessage(), treeException);
+			throw treeException;
+		}
 		Edge edge = new Edge(parentNode, node);
+		treeNodes.add(node);
 		treeEdges.add(edge);
 	}
 	/**
@@ -115,7 +123,7 @@ public class Tree {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Empties a tree
 	 */
