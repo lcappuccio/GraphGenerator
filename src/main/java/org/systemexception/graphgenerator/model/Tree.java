@@ -31,7 +31,8 @@ public class Tree {
 
 	/**
 	 * Adds a node to the tree and an edge from the parent node
-	 * @param node the node to add
+	 *
+	 * @param node       the node to add
 	 * @param parentNode the parent node of the node
 	 * @throws EdgeException
 	 * @throws TreeException
@@ -167,9 +168,14 @@ public class Tree {
 		treeLevelsString.add(treeLevelString);
 	}
 
+	/**
+	 * Transforms the nodes hashmap to a friendly arraylist
+	 *
+	 * @return an arraylist with all nodes
+	 */
 	public List<Node> getNodes() {
 		ArrayList<Node> nodes = new ArrayList<>();
-		for (String key: treeNodes.keySet()) {
+		for (String key : treeNodes.keySet()) {
 			nodes.add(treeNodes.get(key));
 		}
 		return nodes;
