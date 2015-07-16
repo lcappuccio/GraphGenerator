@@ -38,7 +38,7 @@ public class Tree {
 		}
 		if (!nodeExists(parentNode.getNodeId())) {
 			TreeException treeException = new TreeException(ErrorCodes.NODE_NOT_EXISTS.toString());
-			logger.error(ErrorCodes.NODE_NOT_EXISTS.toString(), treeException);
+			logger.error(treeException.getMessage(), treeException);
 			throw treeException;
 		}
 		Edge edge = new Edge(parentNode, node);
