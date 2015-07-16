@@ -20,7 +20,7 @@ public class Tree {
 	private HashMap<String, ArrayList<Node>> levelNodes = new HashMap<>();
 
 	public Tree() throws NodeException {
-		Node rootNode = new Node("1", Labels.ROOT_NODE_NAME.toString());
+		Node rootNode = new Node(Labels.ROOT_NODE_ID.toString(), Labels.ROOT_NODE_NAME.toString());
 		treeNodes.add(rootNode);
 	}
 
