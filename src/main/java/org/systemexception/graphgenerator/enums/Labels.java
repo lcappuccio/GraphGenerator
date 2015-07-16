@@ -7,7 +7,8 @@ package org.systemexception.graphgenerator.enums;
 public enum Labels {
 
     NODE_NAME("Node_"),
-    LEVEL_NAME("_Level");
+    LEVEL_NAME("Level"),
+	NAME_SEPARATOR("_");
 
     private final String label;
 

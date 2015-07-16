@@ -63,7 +63,8 @@ public class KaryTree {
 		for (int i = 0; i < childPerNode; i++) {
 			String childNodeId = Labels.NODE_NAME.toString() + parentNode.getNodeId().replace(Labels.NODE_NAME
 					.toString(), "") + String.valueOf(i);
-			String childNodeDescr = childNodeId + Labels.LEVEL_NAME.toString() + String.valueOf(currentLevel);
+			String childNodeDescr = childNodeId + Labels.NAME_SEPARATOR + Labels.LEVEL_NAME.toString() + String
+					.valueOf(currentLevel);
 			Node childNode = new Node(childNodeId, childNodeDescr);
 			Edge edge = new Edge(parentNode, childNode);
 			if (nodeExists(childNodeId)) {
@@ -76,7 +77,7 @@ public class KaryTree {
 			treeEdges.add(edge);
 			logger.info("Added node " + childNodeDescr + " with parent " + parentNode.getNodeId());
 			addTreeLevelForCsvOutput(childNodeId, childNodeDescr, parentNode.getNodeId(), Labels.LEVEL_NAME.toString
-					().replace("_", "") + String.valueOf(currentLevel));
+					() + String.valueOf(currentLevel));
 			makeTree(childNode, currentLevel + 1);
 		}
 	}
