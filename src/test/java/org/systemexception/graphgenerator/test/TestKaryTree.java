@@ -4,7 +4,6 @@
  */
 package org.systemexception.graphgenerator.test;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.Test;
 import org.systemexception.graphgenerator.enums.Labels;
 import org.systemexception.graphgenerator.exception.EdgeException;
@@ -71,7 +70,6 @@ public class TestKaryTree {
 	}
 
 	@Test
-	@Ignore
 	public void emptyTree() throws NodeException, TreeException, EdgeException {
 		generateTree(3, 3);
 		while (sut.getNodes().size() > 0) {
