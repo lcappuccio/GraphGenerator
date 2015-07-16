@@ -89,7 +89,6 @@ public class TestKaryTree {
 		generateTree(1, 11);
 	}
 
-
 	/**
 	 * Generates a tree
 	 *

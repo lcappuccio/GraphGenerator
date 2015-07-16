@@ -12,8 +12,7 @@ public enum ErrorCodes {
 	TREE_10_CHILDS_PER_NODE("Trees with more than 10 childs per node are not " +
 			"supported"),
 	TREE_NODE_ALREADY_EXISTS("NodeId already exists: ");
-
-
+	
 	private final String errorCode;
 
 	ErrorCodes(String errorCode) {
