@@ -31,7 +31,7 @@ public class Tree {
 
 	public void addNode(Node node, Node parentNode) throws EdgeException, TreeException {
 		if (nodeExists(node.getNodeId())) {
-			TreeException treeException = new TreeException(ErrorCodes.TREE_NODE_ALREADY_EXISTS.toString() +
+			TreeException treeException = new TreeException(ErrorCodes.NODE_ALREADY_EXISTS.toString() +
 					node);
 			logger.error(treeException.getMessage(), treeException);
 			throw treeException;
