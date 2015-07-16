@@ -39,12 +39,13 @@ public class Tree {
 		if (!nodeExists(parentNode.getNodeId())) {
 			TreeException treeException = new TreeException(ErrorCodes.NODE_NOT_EXISTS.toString());
 			logger.error(ErrorCodes.NODE_NOT_EXISTS.toString(), treeException);
-			throw  treeException;
+			throw treeException;
 		}
 		Edge edge = new Edge(parentNode, node);
 		treeNodes.add(node);
 		treeEdges.add(edge);
 	}
+
 	/**
 	 * Removes a node from the tree
 	 *
