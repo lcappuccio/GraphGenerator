@@ -11,8 +11,9 @@ public enum ErrorCodes {
 	EDGE_NULL_NODE("Null nodes not allowed in edge"),
 	TREE_10_CHILDS_PER_NODE("Trees with more than 10 childs per node are not " +
 			"supported"),
-	TREE_NODE_ALREADY_EXISTS("NodeId already exists: ");
-	
+	TREE_NODE_ALREADY_EXISTS("NodeId already exists: "),
+	NODE_NOT_EXISTS("Node does not exist");
+
 	private final String errorCode;
 
 	ErrorCodes(String errorCode) {
