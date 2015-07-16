@@ -41,9 +41,10 @@ public class KaryTree {
 		treeLevelsString = new ArrayList();
 		this.treeLevels = levels;
 		this.childPerNode = childPerNode;
-		Node rootNode = new Node("1", "RootNode");
+		Node rootNode = new Node("1", Labels.ROOT_NODE_NAME.toString());
 		treeNodes.add(rootNode);
-		addTreeLevelForCsvOutput("1", "RootNode", "0", "RootLevel");
+		addTreeLevelForCsvOutput("1", Labels.ROOT_NODE_NAME.toString(), Labels.ROOT_PARENT_NODE.toString(), Labels
+				.ROOT_LEVEL_NAME.toString());
 		makeTree(rootNode, 0);
 	}
 

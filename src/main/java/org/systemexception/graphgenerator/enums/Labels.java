@@ -8,7 +8,10 @@ public enum Labels {
 
     NODE_NAME("Node_"),
     LEVEL_NAME("Level"),
-	NAME_SEPARATOR("_");
+	NAME_SEPARATOR("_"),
+	ROOT_NODE_NAME("RootNode"),
+	ROOT_LEVEL_NAME("RootLevel"),
+	ROOT_PARENT_NODE("0");
 
     private final String label;
 
