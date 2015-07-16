@@ -24,7 +24,7 @@ public class Main {
 		// Create tree and csv util
 		KaryTree karyTree = new KaryTree(treeLevels, childPerNode);
 		CsvWriter csvWriter = new CsvWriter(outputFileName);
-		csvWriter.writeFile(karyTree);
+		csvWriter.writeTreeFile(karyTree);
 		karyTree.emptyTree();
 		System.exit(0);
 	}
