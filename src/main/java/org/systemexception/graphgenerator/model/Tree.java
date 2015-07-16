@@ -1,6 +1,7 @@
 package org.systemexception.graphgenerator.model;
 
 import org.systemexception.graphgenerator.enums.Labels;
+import org.systemexception.graphgenerator.exception.EdgeException;
 import org.systemexception.graphgenerator.exception.NodeException;
 import org.systemexception.logger.api.Logger;
 import org.systemexception.logger.impl.LoggerImpl;
@@ -26,15 +27,11 @@ public class Tree {
 		treeNodes.add(rootNode);
 	}
 
-	/**
-	 * Empties a tree
-	 */
-	public void emptyTree() {
-		logger.info("Emptying tree");
-		treeEdges.clear();
-		treeNodes.clear();
+	public void addNode(Node node, Node parentNode) throws EdgeException {
+		treeNodes.add(node);
+		Edge edge = new Edge(parentNode, node);
+		treeEdges.add(edge);
 	}
-
 	/**
 	 * Removes a node from the tree
 	 *
@@ -90,6 +87,21 @@ public class Tree {
 	}
 
 	/**
+	 * Returns the parent node of a given node
+	 *
+	 * @param node the node to check
+	 * @return the parent node
+	 */
+	public Node getParentNode(Node node) {
+		for (Edge edge : treeEdges) {
+			if (edge.getChildNode().equals(node)) {
+				return edge.getParentNode();
+			}
+		}
+		return null;
+	}
+
+	/**
 	 * Verify if nodeId already exists in tree
 	 *
 	 * @param nodeId the node id to check
@@ -103,20 +115,14 @@ public class Tree {
 		}
 		return false;
 	}
-
+	
 	/**
-	 * Returns the parent node of a given node
-	 *
-	 * @param node the node to check
-	 * @return the parent node
+	 * Empties a tree
 	 */
-	public Node getParentNode(Node node) {
-		for (Edge edge : treeEdges) {
-			if (edge.getChildNode().equals(node)) {
-				return edge.getParentNode();
-			}
-		}
-		return null;
+	public void emptyTree() {
+		logger.info("Emptying tree");
+		treeEdges.clear();
+		treeNodes.clear();
 	}
 
 	/**
