@@ -1,5 +1,7 @@
 package org.systemexception.graphgenerator.model;
 
+import org.systemexception.graphgenerator.enums.Labels;
+import org.systemexception.graphgenerator.exception.NodeException;
 import org.systemexception.logger.api.Logger;
 import org.systemexception.logger.impl.LoggerImpl;
 
@@ -17,7 +19,8 @@ public class Tree {
 	private ArrayList<Edge> treeEdges = new ArrayList<>();
 	private HashMap<String, ArrayList<Node>> levelNodes = new HashMap<>();
 
-	public Tree() {
-
+	public Tree() throws NodeException {
+		Node rootNode = new Node("1", Labels.ROOT_NODE_NAME.toString());
+		treeNodes.add(rootNode);
 	}
 }
