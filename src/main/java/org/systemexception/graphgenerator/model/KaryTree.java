@@ -15,7 +15,7 @@ import org.systemexception.logger.impl.LoggerImpl;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KaryTree {
+public class KaryTree extends Tree {
 
 	private static final Logger logger = LoggerImpl.getFor(KaryTree.class);
 	private final ArrayList<Node> treeNodes;
@@ -180,21 +180,6 @@ public class KaryTree {
 			}
 		}
 		return null;
-	}
-
-	/**
-	 * Verify if nodeId already exists in tree
-	 *
-	 * @param nodeId the node id to check
-	 * @return the boolean verification value
-	 */
-	private boolean nodeExists(String nodeId) {
-		for (Node treeNode : treeNodes) {
-			if (treeNode.getNodeId().equals(nodeId)) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	public List<Node> getNodes() {
