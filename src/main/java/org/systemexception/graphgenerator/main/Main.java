@@ -8,7 +8,7 @@ import org.apache.commons.cli.*;
 import org.systemexception.graphgenerator.exception.EdgeException;
 import org.systemexception.graphgenerator.exception.NodeException;
 import org.systemexception.graphgenerator.exception.TreeException;
-import org.systemexception.graphgenerator.model.Tree;
+import org.systemexception.graphgenerator.model.KaryTree;
 import org.systemexception.graphgenerator.pojo.CsvWriter;
 
 public class Main {
@@ -22,10 +22,10 @@ public class Main {
 		// Validate launch options
 		validateOptions(args);
 		// Create tree and csv util
-		Tree tree = new Tree(treeLevels, childPerNode);
+		KaryTree karyTree = new KaryTree(treeLevels, childPerNode);
 		CsvWriter csvWriter = new CsvWriter(outputFileName);
-		csvWriter.writeFile(tree);
-		tree.emptyTree();
+		csvWriter.writeFile(karyTree);
+		karyTree.emptyTree();
 		System.exit(0);
 	}
 

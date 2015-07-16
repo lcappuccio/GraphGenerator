@@ -15,9 +15,9 @@ import org.systemexception.logger.impl.LoggerImpl;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tree {
+public class KaryTree {
 
-	private static final Logger logger = LoggerImpl.getFor(Tree.class);
+	private static final Logger logger = LoggerImpl.getFor(KaryTree.class);
 	private final ArrayList<Node> treeNodes;
 	private final ArrayList<Edge> treeEdges;
 	private final ArrayList<ArrayList<String>> treeLevelsString;
@@ -30,7 +30,7 @@ public class Tree {
 	 * @throws EdgeException
 	 * @throws TreeException
 	 */
-	public Tree(int levels, int childPerNode) throws NodeException, EdgeException, TreeException {
+	public KaryTree(int levels, int childPerNode) throws NodeException, EdgeException, TreeException {
 		if (childPerNode > 10) {
 			TreeException treeException = new TreeException(ErrorCodes.TREE_10_CHILDS_PER_NODE.toString());
 			logger.error(treeException.getMessage(), treeException);

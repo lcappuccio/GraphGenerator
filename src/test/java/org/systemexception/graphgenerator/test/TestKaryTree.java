@@ -9,16 +9,16 @@ import org.systemexception.graphgenerator.exception.EdgeException;
 import org.systemexception.graphgenerator.exception.NodeException;
 import org.systemexception.graphgenerator.exception.TreeException;
 import org.systemexception.graphgenerator.model.Node;
-import org.systemexception.graphgenerator.model.Tree;
+import org.systemexception.graphgenerator.model.KaryTree;
 
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class TestTree {
+public class TestKaryTree {
 
-	private Tree sut;
+	private KaryTree sut;
 	private double totalNodes;
 
 	@Test
@@ -101,6 +101,6 @@ public class TestTree {
 	 */
 	private void generateTree(int height, int childPerNode) throws NodeException, EdgeException, TreeException {
 		totalNodes = (Math.pow(childPerNode, height + 1) - 1) / (childPerNode - 1);
-		sut = new Tree(height, childPerNode);
+		sut = new KaryTree(height, childPerNode);
 	}
 }
