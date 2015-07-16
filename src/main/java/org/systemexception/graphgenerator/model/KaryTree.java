@@ -13,6 +13,7 @@ import org.systemexception.logger.api.Logger;
 import org.systemexception.logger.impl.LoggerImpl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class KaryTree extends Tree {
 
@@ -32,13 +33,13 @@ public class KaryTree extends Tree {
 			logger.error(treeException.getMessage(), treeException);
 			throw treeException;
 		}
-		treeNodes = new ArrayList();
+		treeNodes = new HashMap<>();
 		treeEdges = new ArrayList();
 		treeLevelsString = new ArrayList();
 		this.treeLevels = levels;
 		this.childPerNode = childPerNode;
 		Node rootNode = new Node(Labels.ROOT_NODE_ID.toString(), Labels.ROOT_NODE_NAME.toString());
-		treeNodes.add(rootNode);
+		treeNodes.put(Labels.ROOT_NODE_ID.toString(), rootNode);
 		addTreeLevelForCsvOutput(Labels.ROOT_NODE_ID.toString(), Labels.ROOT_NODE_NAME.toString(), Labels.ROOT_PARENT_NODE
 				.toString(), Labels
 				.ROOT_LEVEL_NAME.toString());

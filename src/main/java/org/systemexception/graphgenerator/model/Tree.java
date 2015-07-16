@@ -19,16 +19,23 @@ import java.util.List;
 public class Tree {
 
 	private static final Logger logger = LoggerImpl.getFor(Tree.class);
-	protected ArrayList<Node> treeNodes = new ArrayList<>();
+	protected HashMap<String, Node> treeNodes = new HashMap();
 	protected ArrayList<Edge> treeEdges = new ArrayList<>();
 	private HashMap<String, ArrayList<Node>> levelNodes = new HashMap<>();
 	protected ArrayList<ArrayList<String>> treeLevelsString;
 
 	public Tree() throws NodeException {
 		Node rootNode = new Node(Labels.ROOT_NODE_ID.toString(), Labels.ROOT_NODE_NAME.toString());
-		treeNodes.add(rootNode);
+		treeNodes.put(Labels.ROOT_NODE_ID.toString(), rootNode);
 	}
 
+	/**
+	 * Adds a node to the tree and an edge from the parent node
+	 * @param node the node to add
+	 * @param parentNode the parent node of the node
+	 * @throws EdgeException
+	 * @throws TreeException
+	 */
 	public void addNode(Node node, Node parentNode) throws EdgeException, TreeException {
 		if (nodeExists(node.getNodeId())) {
 			TreeException treeException = new TreeException(ErrorCodes.NODE_ALREADY_EXISTS.toString() +
@@ -42,8 +49,12 @@ public class Tree {
 			throw treeException;
 		}
 		Edge edge = new Edge(parentNode, node);
-		treeNodes.add(node);
+		treeNodes.put(node.getNodeId(), node);
 		treeEdges.add(edge);
+	}
+
+	public Node getNodeById(String nodeId) throws NodeException {
+		return treeNodes.get(nodeId);
 	}
 
 	/**
@@ -59,9 +70,9 @@ public class Tree {
 				logger.info("Found child node: " + childNode.getNodeId() + " for node " + node.getNodeId());
 			}
 		} else {
-			if (treeNodes.contains(node)) {
+			if (treeNodes.containsKey(node.getNodeId())) {
 				logger.info("Remove node: " + node.getNodeId());
-				treeNodes.remove(node);
+				treeNodes.remove(node.getNodeId());
 			}
 			removeIncomingEdgeTo(node);
 		}
@@ -122,12 +133,11 @@ public class Tree {
 	 * @return the boolean verification value
 	 */
 	public boolean nodeExists(String nodeId) {
-		for (Node treeNode : treeNodes) {
-			if (treeNode.getNodeId().equals(nodeId)) {
-				return true;
-			}
+		if (treeNodes.containsKey(nodeId)) {
+			return true;
+		} else {
+			return false;
 		}
-		return false;
 	}
 
 	/**
@@ -158,7 +168,11 @@ public class Tree {
 	}
 
 	public List<Node> getNodes() {
-		return treeNodes;
+		ArrayList<Node> nodes = new ArrayList<>();
+		for (String key: treeNodes.keySet()) {
+			nodes.add(treeNodes.get(key));
+		}
+		return nodes;
 	}
 
 	public List<Edge> getEdges() {

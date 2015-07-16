@@ -4,14 +4,17 @@
  */
 package org.systemexception.graphgenerator.test;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.Test;
+import org.systemexception.graphgenerator.enums.Labels;
 import org.systemexception.graphgenerator.exception.EdgeException;
 import org.systemexception.graphgenerator.exception.NodeException;
 import org.systemexception.graphgenerator.exception.TreeException;
-import org.systemexception.graphgenerator.model.Node;
 import org.systemexception.graphgenerator.model.KaryTree;
+import org.systemexception.graphgenerator.model.Node;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -55,6 +58,20 @@ public class TestKaryTree {
 	}
 
 	@Test
+	public void removeLeaveNode() throws NodeException, TreeException, EdgeException {
+		generateTree(2, 2);
+		List<Node> nodeList = sut.getNodes();
+		for (Node node: nodeList) {
+			if (sut.getChildNodes(node).isEmpty()) {
+				sut.removeNode(node);
+			}
+		}
+		assert(sut.getNodes().size() == 1);
+		assert(sut.getNodeById(Labels.ROOT_NODE_ID.toString()).getNodeDescr().equals(Labels.ROOT_NODE_NAME.toString()));
+	}
+
+	@Test
+	@Ignore
 	public void emptyTree() throws NodeException, TreeException, EdgeException {
 		generateTree(3, 3);
 		while (sut.getNodes().size() > 0) {
