@@ -20,11 +20,8 @@ public class KaryTree extends Tree {
 	/**
 	 * @param levels       the total levels of the tree
 	 * @param childPerNode the amount of childs per node
-	 * @throws NodeException
-	 * @throws EdgeException
-	 * @throws TreeException
 	 */
-	public KaryTree(int levels, int childPerNode) throws NodeException, EdgeException, TreeException {
+	public KaryTree(int levels, int childPerNode) throws TreeException {
 		if (childPerNode > 10) {
 			TreeException treeException = new TreeException(ErrorCodes.TREE_10_CHILDS_PER_NODE.toString());
 			logger.error(treeException.getMessage(), treeException);
@@ -35,13 +32,24 @@ public class KaryTree extends Tree {
 		treeLevelsString = new ArrayList();
 		this.treeLevels = levels;
 		this.childPerNode = childPerNode;
-		Node rootNode = new Node(Labels.ROOT_NODE_ID.toString(), Labels.ROOT_NODE_NAME.toString());
+		Node rootNode = null;
+		try {
+			rootNode = new Node(Labels.ROOT_NODE_ID.toString(), Labels.ROOT_NODE_NAME.toString());
+		} catch (NodeException e) {
+			TreeException treeException = new TreeException(ErrorCodes.TREE_CREATION_ERROR.toString());
+			logger.error(treeException.getMessage(), treeException);
+		}
 		treeNodes.put(Labels.ROOT_NODE_ID.toString(), rootNode);
 		addTreeLevelForCsvOutput(Labels.ROOT_NODE_ID.toString(), Labels.ROOT_NODE_NAME.toString(), Labels
 				.ROOT_PARENT_NODE
 				.toString(), Labels
 				.ROOT_LEVEL_NAME.toString());
-		makeTree(rootNode, 0);
+		try {
+			makeTree(rootNode, 0);
+		} catch (NodeException | EdgeException | TreeException e) {
+			TreeException treeException = new TreeException(ErrorCodes.TREE_KARY_GENERATION_ERROR.toString());
+			logger.error(treeException.getMessage(), treeException);
+		}
 	}
 
 	/**
