@@ -18,6 +18,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+@SuppressWarnings("JavaDoc")
 public class TestKaryTree {
 
 	private KaryTree sut;
@@ -49,7 +50,7 @@ public class TestKaryTree {
 	}
 
 	@Test
-	public void dontRemoveNodeWithChilds() throws NodeException, TreeException, EdgeException {
+	public void dontRemoveNodeWithChilds() throws TreeException {
 		generateTree(1, 3);
 		Node rootNode = sut.getNodes().get(0);
 		sut.removeNode(rootNode);
@@ -57,7 +58,7 @@ public class TestKaryTree {
 	}
 
 	@Test
-	public void removeLeaveNode() throws NodeException, TreeException, EdgeException {
+	public void removeLeaveNode() throws NodeException, TreeException {
 		generateTree(2, 2);
 		List<Node> nodeList = sut.getNodes();
 		for (Node node : nodeList) {
@@ -71,7 +72,7 @@ public class TestKaryTree {
 	}
 
 	@Test
-	public void emptyTree() throws NodeException, TreeException, EdgeException {
+	public void emptyTree() throws TreeException {
 		generateTree(3, 3);
 		while (sut.getNodes().size() > 0) {
 			for (int i = 0; i < sut.getNodes().size(); i++) {
@@ -84,7 +85,7 @@ public class TestKaryTree {
 	}
 
 	@Test
-	public void emptyTreeInternalMethod() throws NodeException, TreeException, EdgeException {
+	public void emptyTreeInternalMethod() throws TreeException {
 		generateTree(3, 3);
 		sut.emptyTree();
 		assertTrue(sut.getNodes().size() == 0);
@@ -92,7 +93,7 @@ public class TestKaryTree {
 	}
 
 	@Test
-	public void getParentNode() throws NodeException, TreeException, EdgeException {
+	public void getParentNode() throws TreeException {
 		generateTree(1, 1);
 		Node childNode = sut.getNodes().get(sut.getNodes().size() - 1);
 		Node parentNode = sut.getNodes().get(0);
@@ -101,7 +102,7 @@ public class TestKaryTree {
 	}
 
 	@Test(expected = TreeException.class)
-	public void refuseMoreThan10ChildPerNode() throws NodeException, TreeException, EdgeException {
+	public void refuseMoreThan10ChildPerNode() throws TreeException {
 		generateTree(1, 11);
 	}
 
@@ -110,11 +111,8 @@ public class TestKaryTree {
 	 *
 	 * @param height       the height of the tree level we're on
 	 * @param childPerNode how many childs per node
-	 * @throws NodeException
-	 * @throws EdgeException
-	 * @throws TreeException
 	 */
-	private void generateTree(int height, int childPerNode) throws NodeException, EdgeException, TreeException {
+	private void generateTree(int height, int childPerNode) throws TreeException {
 		totalNodes = (Math.pow(childPerNode, height + 1) - 1) / (childPerNode - 1);
 		sut = new KaryTree(height, childPerNode);
 	}
