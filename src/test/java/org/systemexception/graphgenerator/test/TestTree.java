@@ -1,106 +1,32 @@
-/**
- * @author leo
- * @date 20/04/2015 20:32
- */
 package org.systemexception.graphgenerator.test;
 
 import org.junit.Test;
+import org.systemexception.graphgenerator.enums.Labels;
 import org.systemexception.graphgenerator.exception.EdgeException;
 import org.systemexception.graphgenerator.exception.NodeException;
 import org.systemexception.graphgenerator.exception.TreeException;
 import org.systemexception.graphgenerator.model.Node;
 import org.systemexception.graphgenerator.model.Tree;
 
-import java.util.ArrayList;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
+/**
+ * @author leo
+ * @date 16/07/15 22:51
+ */
 public class TestTree {
 
 	private Tree sut;
-	private double totalNodes;
 
 	@Test
-	public void createSimpleTree() throws NodeException, EdgeException, TreeException {
-		generateTree(1, 3);
-		assertTrue(totalNodes == sut.getNodes().size());
-	}
-
-	@Test
-	public void createTwoLevelTree() throws NodeException, EdgeException, TreeException {
-		generateTree(2, 2);
-		assertTrue(totalNodes == sut.getNodes().size());
-	}
-
-	@Test
-	public void createFourLevelTree() throws NodeException, EdgeException, TreeException {
-		generateTree(2, 4);
-		assertTrue(totalNodes == sut.getNodes().size());
-	}
-
-	@Test
-	public void checkIfRootHasChilds() throws NodeException, EdgeException, TreeException {
-		generateTree(1, 3);
-		ArrayList<Node> childNodes = sut.getChildNodes(sut.getNodes().get(0));
-		assertTrue(!childNodes.isEmpty());
-	}
-
-	@Test
-	public void dontRemoveNodeWithChilds() throws NodeException, TreeException, EdgeException {
-		generateTree(1, 3);
-		Node rootNode = sut.getNodes().get(0);
-		sut.removeNode(rootNode);
-		assertTrue(sut.getNodes().contains(rootNode));
-	}
-
-	@Test
-	public void emptyTree() throws NodeException, TreeException, EdgeException {
-		generateTree(3, 3);
-		while (sut.getNodes().size() > 0) {
-			for (int i = 0; i < sut.getNodes().size(); i++) {
-				Node nodeToRemove = sut.getNodes().get(i);
-				sut.removeNode(nodeToRemove);
-			}
-		}
-		assertTrue(sut.getNodes().size() == 0);
-		assertTrue(sut.getEdges().size() == 0);
-	}
-
-	@Test
-	public void emptyTreeInternalMethod() throws NodeException, TreeException, EdgeException {
-		generateTree(3, 3);
-		sut.emptyTree();
-		assertTrue(sut.getNodes().size() == 0);
-		assertTrue(sut.getEdges().size() == 0);
-	}
-
-	@Test
-	public void getParentNode() throws NodeException, TreeException, EdgeException {
-		generateTree(1, 1);
-		Node childNode = sut.getNodes().get(sut.getNodes().size() - 1);
-		Node parentNode = sut.getNodes().get(0);
-		assertEquals(sut.getParentNode(childNode), parentNode);
-		assertEquals(sut.getParentNode(parentNode), null);
+	public void treeHasRootNode() {
+		sut = new Tree();
+		assert (sut.nodeExists(Labels.ROOT_NODE_ID.toString()));
 	}
 
 	@Test(expected = TreeException.class)
-	public void refuseMoreThan10ChildPerNode() throws NodeException, TreeException, EdgeException {
-		generateTree(1, 11);
-	}
-
-
-	/**
-	 * Generates a tree
-	 *
-	 * @param height       the height of the tree level we're on
-	 * @param childPerNode how many childs per node
-	 * @throws NodeException
-	 * @throws EdgeException
-	 * @throws TreeException
-	 */
-	private void generateTree(int height, int childPerNode) throws NodeException, EdgeException, TreeException {
-		totalNodes = (Math.pow(childPerNode, height + 1) - 1) / (childPerNode - 1);
-		sut = new Tree(height, childPerNode);
+	public void exceptionOnNonExistingParentNode() throws NodeException, EdgeException, TreeException {
+		sut = new Tree();
+		Node testNode = new Node("999", "testNode");
+		Node nonExistingNode = new Node("XXX", "nonExistingNode");
+		sut.addNode(testNode, nonExistingNode);
 	}
 }

@@ -1,7 +1,3 @@
-/**
- * @author leo
- * @date 20/04/2015 19:28
- */
 package org.systemexception.graphgenerator.model;
 
 import org.systemexception.graphgenerator.enums.ErrorCodes;
@@ -13,102 +9,60 @@ import org.systemexception.logger.api.Logger;
 import org.systemexception.logger.impl.LoggerImpl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+/**
+ * @author leo
+ * @date 16/07/15 22:46
+ */
 public class Tree {
 
-	private static final Logger logger = LoggerImpl.getFor(Tree.class);
-	private final ArrayList<Node> treeNodes;
-	private final ArrayList<Edge> treeEdges;
-	private final ArrayList<ArrayList<String>> treeLevelsString;
-	private final int treeLevels, childPerNode;
+	protected static final Logger logger = LoggerImpl.getFor(Tree.class);
+	protected HashMap<String, Node> treeNodes = new HashMap();
+	protected ArrayList<Edge> treeEdges = new ArrayList<>();
+	private HashMap<String, ArrayList<Node>> levelNodes = new HashMap<>();
+	protected ArrayList<ArrayList<String>> treeLevelsString;
+
+	public Tree() {
+		Node rootNode = null;
+		try {
+			rootNode = new Node(Labels.ROOT_NODE_ID.toString(), Labels.ROOT_NODE_NAME.toString());
+		} catch (NodeException e) {
+			TreeException treeException = new TreeException(ErrorCodes.TREE_CREATION_ERROR.toString());
+			logger.error(treeException.getMessage(), treeException);
+		}
+		treeNodes.put(Labels.ROOT_NODE_ID.toString(), rootNode);
+	}
 
 	/**
-	 * @param levels       the total levels of the tree
-	 * @param childPerNode the amount of childs per node
-	 * @throws NodeException
+	 * Adds a node to the tree and an edge from the parent node
+	 *
+	 * @param node       the node to add
+	 * @param parentNode the parent node of the node
 	 * @throws EdgeException
 	 * @throws TreeException
 	 */
-	public Tree(int levels, int childPerNode) throws NodeException, EdgeException, TreeException {
-		if (childPerNode > 10) {
-			TreeException treeException = new TreeException(ErrorCodes.TREE_10_CHILDS_PER_NODE.toString());
+	public void addNode(Node node, Node parentNode) throws EdgeException, TreeException {
+		if (nodeExists(node.getNodeId())) {
+			TreeException treeException = new TreeException(ErrorCodes.NODE_ALREADY_EXISTS.toString() +
+					node);
 			logger.error(treeException.getMessage(), treeException);
 			throw treeException;
 		}
-		treeNodes = new ArrayList();
-		treeEdges = new ArrayList();
-		treeLevelsString = new ArrayList();
-		this.treeLevels = levels;
-		this.childPerNode = childPerNode;
-		Node rootNode = new Node("1", "RootNode");
-		treeNodes.add(rootNode);
-		addTreeLevelForCsvOutput("1", "RootNode", "0", "RootLevel");
-		makeTree(rootNode, 0);
-	}
-
-	/**
-	 * Generate the tree recursively
-	 *
-	 * @param parentNode   the parent node, initially a root node, recursively the parent node
-	 * @param currentLevel the current level of the tree
-	 * @throws NodeException
-	 * @throws EdgeException
-	 * @throws TreeException
-	 */
-	private void makeTree(Node parentNode, int currentLevel) throws NodeException, EdgeException, TreeException {
-		if (currentLevel == treeLevels) {
-			return;
+		if (!nodeExists(parentNode.getNodeId())) {
+			TreeException treeException = new TreeException(ErrorCodes.NODE_DOES_NOT_EXIST.toString());
+			logger.error(treeException.getMessage(), treeException);
+			throw treeException;
 		}
-		for (int i = 0; i < childPerNode; i++) {
-			String childNodeId = Labels.NODE_NAME.toString() + parentNode.getNodeId().replace(Labels.NODE_NAME
-					.toString(), "") + String.valueOf(i);
-			String childNodeDescr = childNodeId + Labels.LEVEL_NAME.toString() + String.valueOf(currentLevel);
-			Node childNode = new Node(childNodeId, childNodeDescr);
-			Edge edge = new Edge(parentNode, childNode);
-			if (nodeExists(childNodeId)) {
-				TreeException treeException = new TreeException(ErrorCodes.TREE_NODE_ALREADY_EXISTS.toString() +
-						childNodeId);
-				logger.error(treeException.getMessage(), treeException);
-				throw treeException;
-			}
-			treeNodes.add(childNode);
-			treeEdges.add(edge);
-			logger.info("Added node " + childNodeDescr + " with parent " + parentNode.getNodeId());
-			addTreeLevelForCsvOutput(childNodeId, childNodeDescr, parentNode.getNodeId(), Labels.LEVEL_NAME.toString
-					().replace("_", "") + String.valueOf(currentLevel));
-			makeTree(childNode, currentLevel + 1);
-		}
+		Edge edge = new Edge(parentNode, node);
+		treeNodes.put(node.getNodeId(), node);
+		treeEdges.add(edge);
 	}
 
-	/**
-	 * Creates a String representation of a tree level
-	 *
-	 * @param nodeId       the node id
-	 * @param nodeDescr    the node description
-	 * @param parentNodeId the parent node id
-	 * @param levelDescr   the level description
-	 */
-	private void addTreeLevelForCsvOutput(String nodeId, String nodeDescr, String parentNodeId, String
-			levelDescr) {
-		ArrayList<String> treeLevelString = new ArrayList();
-		treeLevelString.add(parentNodeId);
-		treeLevelString.add(nodeId);
-		treeLevelString.add(nodeDescr);
-		treeLevelString.add(levelDescr);
-		treeLevelsString.add(treeLevelString);
+	public Node getNodeById(String nodeId) throws NodeException {
+		return treeNodes.get(nodeId);
 	}
-
-	/**
-	 * Empties a tree
-	 */
-	public void emptyTree() {
-		logger.info("Emptying tree");
-		treeEdges.clear();
-		treeNodes.clear();
-		treeLevelsString.clear();
-	}
-
 
 	/**
 	 * Removes a node from the tree
@@ -123,9 +77,9 @@ public class Tree {
 				logger.info("Found child node: " + childNode.getNodeId() + " for node " + node.getNodeId());
 			}
 		} else {
-			if (treeNodes.contains(node)) {
+			if (treeNodes.containsKey(node.getNodeId())) {
 				logger.info("Remove node: " + node.getNodeId());
-				treeNodes.remove(node);
+				treeNodes.remove(node.getNodeId());
 			}
 			removeIncomingEdgeTo(node);
 		}
@@ -136,7 +90,7 @@ public class Tree {
 	 *
 	 * @param node the target node
 	 */
-	private void removeIncomingEdgeTo(Node node) {
+	protected void removeIncomingEdgeTo(Node node) {
 		List<Edge> edgesToRemove = new ArrayList<>();
 		for (Edge edge : treeEdges) {
 			if (edge.getChildNode().equals(node)) {
@@ -185,17 +139,48 @@ public class Tree {
 	 * @param nodeId the node id to check
 	 * @return the boolean verification value
 	 */
-	private boolean nodeExists(String nodeId) {
-		for (Node treeNode : treeNodes) {
-			if (treeNode.getNodeId().equals(nodeId)) {
-				return true;
-			}
-		}
-		return false;
+	public boolean nodeExists(String nodeId) {
+		return treeNodes.containsKey(nodeId);
 	}
 
+	/**
+	 * Empties a tree
+	 */
+	public void emptyTree() {
+		logger.info("Emptying tree");
+		treeEdges.clear();
+		treeNodes.clear();
+	}
+
+	/**
+	 * Creates a String representation of a tree level
+	 *
+	 * @param nodeId       the node id
+	 * @param nodeDescr    the node description
+	 * @param parentNodeId the parent node id
+	 * @param levelDescr   the level description
+	 */
+	protected void addTreeLevelForCsvOutput(String nodeId, String nodeDescr, String parentNodeId, String
+			levelDescr) {
+		ArrayList<String> treeLevelString = new ArrayList();
+		treeLevelString.add(parentNodeId);
+		treeLevelString.add(nodeId);
+		treeLevelString.add(nodeDescr);
+		treeLevelString.add(levelDescr);
+		treeLevelsString.add(treeLevelString);
+	}
+
+	/**
+	 * Transforms the nodes hashmap to a friendly arraylist
+	 *
+	 * @return an arraylist with all nodes
+	 */
 	public List<Node> getNodes() {
-		return treeNodes;
+		ArrayList<Node> nodes = new ArrayList<>();
+		for (String key : treeNodes.keySet()) {
+			nodes.add(treeNodes.get(key));
+		}
+		return nodes;
 	}
 
 	public List<Edge> getEdges() {

@@ -43,7 +43,7 @@ public class CsvWriter {
 	 *
 	 * @param tree the tree to write to the file
 	 */
-	public void writeFile(Tree tree) {
+	public void writeTreeFile(Tree tree) {
 		try {
 			outWriter = new OutputStreamWriter(new FileOutputStream(new File(fileName)), "UTF-8");
 			csvFilePrinter = new CSVPrinter(outWriter, csvFormat);
