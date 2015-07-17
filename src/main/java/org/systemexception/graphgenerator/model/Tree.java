@@ -140,11 +140,7 @@ public class Tree {
 	 * @return the boolean verification value
 	 */
 	public boolean nodeExists(String nodeId) {
-		if (treeNodes.containsKey(nodeId)) {
-			return true;
-		} else {
-			return false;
-		}
+		return treeNodes.containsKey(nodeId);
 	}
 
 	/**
