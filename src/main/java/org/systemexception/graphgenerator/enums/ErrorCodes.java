@@ -12,7 +12,9 @@ public enum ErrorCodes {
 	NODE_NULL_VALUE("Null values for nodes"),
 	NODE_INVALID_CHARS("Invalid chars on nodeId"),
 	NODE_ALREADY_EXISTS("NodeId already exists: "),
-	NODE_DOES_NOT_EXIST("Node does not exist");
+	NODE_DOES_NOT_EXIST("Node does not exist"),
+	TREE_CREATION_ERROR("Error during tree generation"),
+	TREE_KARY_GENERATION_ERROR("Error generating K-ary tree");
 
 	private final String errorCode;
 
