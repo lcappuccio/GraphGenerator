@@ -69,7 +69,6 @@ public class Main {
 			outputFileName = cmdLine.getOptionValue(OUTPUT_FILENAME);
 			System.out.println("Filename: " + outputFileName);
 		}
-
 	}
 
 	/**

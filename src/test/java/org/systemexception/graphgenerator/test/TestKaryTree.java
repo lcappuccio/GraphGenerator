@@ -60,13 +60,14 @@ public class TestKaryTree {
 	public void removeLeaveNode() throws NodeException, TreeException, EdgeException {
 		generateTree(2, 2);
 		List<Node> nodeList = sut.getNodes();
-		for (Node node: nodeList) {
+		for (Node node : nodeList) {
 			if (sut.getChildNodes(node).isEmpty()) {
 				sut.removeNode(node);
 			}
 		}
-		assert(sut.getNodes().size() == 1);
-		assert(sut.getNodeById(Labels.ROOT_NODE_ID.toString()).getNodeDescr().equals(Labels.ROOT_NODE_NAME.toString()));
+		assert (sut.getNodes().size() == 1);
+		assert (sut.getNodeById(Labels.ROOT_NODE_ID.toString()).getNodeDescr().equals(Labels.ROOT_NODE_NAME.toString
+				()));
 	}
 
 	@Test

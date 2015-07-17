@@ -19,13 +19,13 @@ public class TestTree {
 	@Test
 	public void treeHasRootNode() throws NodeException {
 		sut = new Tree();
-		assert(sut.nodeExists(Labels.ROOT_NODE_ID.toString()));
+		assert (sut.nodeExists(Labels.ROOT_NODE_ID.toString()));
 	}
 
 	@Test(expected = TreeException.class)
 	public void exceptionOnNonExistingParentNode() throws NodeException, EdgeException, TreeException {
 		sut = new Tree();
-		Node testNode = new Node("999","testNode");
+		Node testNode = new Node("999", "testNode");
 		Node nonExistingNode = new Node("XXX", "nonExistingNode");
 		sut.addNode(testNode, nonExistingNode);
 	}

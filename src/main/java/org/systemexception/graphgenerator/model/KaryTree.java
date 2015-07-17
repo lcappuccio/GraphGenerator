@@ -9,8 +9,6 @@ import org.systemexception.graphgenerator.enums.Labels;
 import org.systemexception.graphgenerator.exception.EdgeException;
 import org.systemexception.graphgenerator.exception.NodeException;
 import org.systemexception.graphgenerator.exception.TreeException;
-import org.systemexception.logger.api.Logger;
-import org.systemexception.logger.impl.LoggerImpl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,7 +37,8 @@ public class KaryTree extends Tree {
 		this.childPerNode = childPerNode;
 		Node rootNode = new Node(Labels.ROOT_NODE_ID.toString(), Labels.ROOT_NODE_NAME.toString());
 		treeNodes.put(Labels.ROOT_NODE_ID.toString(), rootNode);
-		addTreeLevelForCsvOutput(Labels.ROOT_NODE_ID.toString(), Labels.ROOT_NODE_NAME.toString(), Labels.ROOT_PARENT_NODE
+		addTreeLevelForCsvOutput(Labels.ROOT_NODE_ID.toString(), Labels.ROOT_NODE_NAME.toString(), Labels
+				.ROOT_PARENT_NODE
 				.toString(), Labels
 				.ROOT_LEVEL_NAME.toString());
 		makeTree(rootNode, 0);
@@ -71,5 +70,4 @@ public class KaryTree extends Tree {
 			makeTree(childNode, currentLevel + 1);
 		}
 	}
-
 }
