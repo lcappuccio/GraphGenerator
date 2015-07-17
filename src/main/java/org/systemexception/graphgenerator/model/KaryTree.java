@@ -17,7 +17,6 @@ import java.util.HashMap;
 
 public class KaryTree extends Tree {
 
-	private static final Logger logger = LoggerImpl.getFor(KaryTree.class);
 	private final int treeLevels, childPerNode;
 
 	/**

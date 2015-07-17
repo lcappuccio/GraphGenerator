@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class Tree {
 
-	private static final Logger logger = LoggerImpl.getFor(Tree.class);
+	protected static final Logger logger = LoggerImpl.getFor(Tree.class);
 	protected HashMap<String, Node> treeNodes = new HashMap();
 	protected ArrayList<Edge> treeEdges = new ArrayList<>();
 	private HashMap<String, ArrayList<Node>> levelNodes = new HashMap<>();
