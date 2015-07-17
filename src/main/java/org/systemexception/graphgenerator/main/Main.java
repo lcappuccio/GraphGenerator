@@ -8,7 +8,7 @@ import org.apache.commons.cli.*;
 import org.systemexception.graphgenerator.exception.EdgeException;
 import org.systemexception.graphgenerator.exception.NodeException;
 import org.systemexception.graphgenerator.exception.TreeException;
-import org.systemexception.graphgenerator.model.Tree;
+import org.systemexception.graphgenerator.model.KaryTree;
 import org.systemexception.graphgenerator.pojo.CsvWriter;
 
 public class Main {
@@ -18,14 +18,14 @@ public class Main {
 	private static final String HELP_OPTION = "h", OUTPUT_FILENAME = "o", TREE_LEVELS = "l", CHILD_PER_NODE = "c";
 
 	public static void main(String[] args) throws ParseException, NodeException, EdgeException, TreeException {
-
+		// TODO Main needs option for tree type to generate
 		// Validate launch options
 		validateOptions(args);
 		// Create tree and csv util
-		Tree tree = new Tree(treeLevels, childPerNode);
+		KaryTree karyTree = new KaryTree(treeLevels, childPerNode);
 		CsvWriter csvWriter = new CsvWriter(outputFileName);
-		csvWriter.writeFile(tree);
-		tree.emptyTree();
+		csvWriter.writeTreeFile(karyTree);
+		karyTree.emptyTree();
 		System.exit(0);
 	}
 
@@ -69,7 +69,6 @@ public class Main {
 			outputFileName = cmdLine.getOptionValue(OUTPUT_FILENAME);
 			System.out.println("Filename: " + outputFileName);
 		}
-
 	}
 
 	/**
