@@ -24,8 +24,14 @@ public class Tree {
 	private HashMap<String, ArrayList<Node>> levelNodes = new HashMap<>();
 	protected ArrayList<ArrayList<String>> treeLevelsString;
 
-	public Tree() throws NodeException {
-		Node rootNode = new Node(Labels.ROOT_NODE_ID.toString(), Labels.ROOT_NODE_NAME.toString());
+	public Tree() {
+		Node rootNode = null;
+		try {
+			rootNode = new Node(Labels.ROOT_NODE_ID.toString(), Labels.ROOT_NODE_NAME.toString());
+		} catch (NodeException e) {
+			TreeException treeException = new TreeException(ErrorCodes.TREE_CREATION_ERROR.toString());
+			logger.error(treeException.getMessage(), treeException);
+		}
 		treeNodes.put(Labels.ROOT_NODE_ID.toString(), rootNode);
 	}
 
