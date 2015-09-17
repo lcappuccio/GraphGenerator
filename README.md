@@ -12,4 +12,4 @@ At the moment no more than 10 child nodes per node are supported, if the limitat
  exception.
 
 ## Extension
-Can be integrated with [OrientPlayGround](https://github.com/lcappuccio/OrientPlayGround)
+Can be integrated with [GraphDbPlayground](https://github.com/lcappuccio/GraphDbPlayground)
