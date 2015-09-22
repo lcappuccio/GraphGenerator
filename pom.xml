@@ -31,8 +31,8 @@
         </dependency>
         <dependency>
             <groupId>com.github.lcappuccio</groupId>
-            <artifactId>CommonLogger</artifactId>
-            <version>1.1</version>
+            <artifactId>common-logger</artifactId>
+            <version>1.1.2</version>
         </dependency>
     </dependencies>
     <properties>
