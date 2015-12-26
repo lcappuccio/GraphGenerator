@@ -26,7 +26,6 @@ public class Main {
 		CsvWriter csvWriter = new CsvWriter(outputFileName);
 		csvWriter.writeTreeFile(karyTree);
 		karyTree.emptyTree();
-		System.exit(0);
 	}
 
 	/**
