@@ -5,10 +5,12 @@ in free form and symmetric (K-ary) form.
 **Master**
 
 [![Build Status](https://travis-ci.org/lcappuccio/graph-csv-generator.svg?branch=master)](https://travis-ci.org/lcappuccio/graph-csv-generator)
+[![codecov.io](https://codecov.io/github/lcappuccio/graph-csv-generator/coverage.svg?branch=master)](https://codecov.io/github/lcappuccio/graph-csv-generator?branch=master)
 
 **Develop**
 
 [![Build Status](https://travis-ci.org/lcappuccio/graph-csv-generator.svg?branch=develop)](https://travis-ci.org/lcappuccio/graph-csv-generator)
+[![codecov.io](https://codecov.io/github/lcappuccio/graph-csv-generator/coverage.svg?branch=develop)](https://codecov.io/github/lcappuccio/graph-csv-generator?branch=develop)
 
 ## Usage
 java -jar graphgenerator.jar -h
