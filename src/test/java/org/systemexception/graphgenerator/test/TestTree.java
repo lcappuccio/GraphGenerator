@@ -29,4 +29,12 @@ public class TestTree {
 		Node nonExistingNode = new Node("XXX", "nonExistingNode");
 		sut.addNode(testNode, nonExistingNode);
 	}
+
+	@Test(expected = TreeException.class)
+	public void exceptionOnAddExistingNode() throws EdgeException, TreeException, NodeException {
+		sut = new Tree();
+		Node testNode = new Node("2", "testNode");
+		sut.addNode(testNode, sut.getNodeById("1"));
+		sut.addNode(testNode, sut.getNodeById("1"));
+	}
 }
