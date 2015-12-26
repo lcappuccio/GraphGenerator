@@ -6,6 +6,7 @@ in free form and symmetric (K-ary) form.
 
 [![Build Status](https://travis-ci.org/lcappuccio/graph-csv-generator.svg?branch=master)](https://travis-ci.org/lcappuccio/graph-csv-generator)
 [![codecov.io](https://codecov.io/github/lcappuccio/graph-csv-generator/coverage.svg?branch=master)](https://codecov.io/github/lcappuccio/graph-csv-generator?branch=master)
+[![Codacy Badge](https://api.codacy.com/project/badge/grade/02bf689d1c44466bab6411cdeca4429b)](https://www.codacy.com/app/leo_4/graph-csv-generator)
 
 **Develop**
 
