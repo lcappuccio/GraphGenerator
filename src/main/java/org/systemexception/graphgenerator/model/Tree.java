@@ -21,7 +21,6 @@ public class Tree {
 	protected static final Logger logger = LoggerImpl.getFor(Tree.class);
 	protected HashMap<String, Node> treeNodes = new HashMap();
 	protected ArrayList<Edge> treeEdges = new ArrayList<>();
-	private HashMap<String, ArrayList<Node>> levelNodes = new HashMap<>();
 	protected ArrayList<ArrayList<String>> treeLevelsString;
 
 	public Tree() {

@@ -15,8 +15,7 @@ import org.systemexception.graphgenerator.model.Node;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 @SuppressWarnings("JavaDoc")
 public class TestKaryTree {
@@ -46,7 +45,7 @@ public class TestKaryTree {
 	public void checkIfRootHasChilds() throws NodeException, EdgeException, TreeException {
 		generateTree(1, 3);
 		ArrayList<Node> childNodes = sut.getChildNodes(sut.getNodes().get(0));
-		assertTrue(!childNodes.isEmpty());
+		assertFalse(childNodes.isEmpty());
 	}
 
 	@Test
@@ -66,9 +65,9 @@ public class TestKaryTree {
 				sut.removeNode(node);
 			}
 		}
-		assert (sut.getNodes().size() == 1);
-		assert (sut.getNodeById(Labels.ROOT_NODE_ID.toString()).getNodeDescr().equals(Labels.ROOT_NODE_NAME.toString
-				()));
+		assert (1 == sut.getNodes().size());
+		assert (sut.getNodeById(Labels.ROOT_NODE_ID.toString()).getNodeDescr()
+				.equals(Labels.ROOT_NODE_NAME.toString()));
 	}
 
 	@Test
