@@ -23,9 +23,7 @@ public class CsvWriter {
 
 	private static final Logger logger = LoggerImpl.getFor(CsvWriter.class);
 	private final CSVFormat csvFormat;
-	private CSVPrinter csvFilePrinter;
 	private final String fileName;
-	private OutputStreamWriter outWriter;
 
 	/**
 	 * @param fileName the filename
@@ -44,6 +42,9 @@ public class CsvWriter {
 	 * @param tree the tree to write to the file
 	 */
 	public void writeTreeFile(Tree tree) {
+
+		CSVPrinter csvFilePrinter = null;
+		OutputStreamWriter outWriter = null;
 
 		try {
 			outWriter = new OutputStreamWriter(new FileOutputStream(new File(fileName)), "UTF-8");
