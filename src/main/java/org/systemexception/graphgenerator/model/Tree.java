@@ -23,14 +23,9 @@ public class Tree {
 	protected ArrayList<Edge> treeEdges = new ArrayList<>();
 	protected ArrayList<ArrayList<String>> treeLevelsString;
 
-	public Tree() {
+	public Tree() throws NodeException {
 		Node rootNode = null;
-		try {
-			rootNode = new Node(Labels.ROOT_NODE_ID.toString(), Labels.ROOT_NODE_NAME.toString());
-		} catch (NodeException e) {
-			TreeException treeException = new TreeException(ErrorCodes.TREE_CREATION_ERROR.toString());
-			logger.error(treeException.getMessage(), treeException);
-		}
+		rootNode = new Node(Labels.ROOT_NODE_ID.toString(), Labels.ROOT_NODE_NAME.toString());
 		treeNodes.put(Labels.ROOT_NODE_ID.toString(), rootNode);
 	}
 
@@ -57,6 +52,7 @@ public class Tree {
 		Edge edge = new Edge(parentNode, node);
 		treeNodes.put(node.getNodeId(), node);
 		treeEdges.add(edge);
+		logger.info("Add node " + node.getNodeId());
 	}
 
 	public Node getNodeById(String nodeId) throws NodeException {
