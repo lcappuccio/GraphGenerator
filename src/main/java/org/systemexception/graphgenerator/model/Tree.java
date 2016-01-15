@@ -1,12 +1,12 @@
 package org.systemexception.graphgenerator.model;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.systemexception.graphgenerator.enums.ErrorCodes;
 import org.systemexception.graphgenerator.enums.Labels;
 import org.systemexception.graphgenerator.exception.EdgeException;
 import org.systemexception.graphgenerator.exception.NodeException;
 import org.systemexception.graphgenerator.exception.TreeException;
-import org.systemexception.logger.api.Logger;
-import org.systemexception.logger.impl.LoggerImpl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class Tree {
 
-	protected static final Logger logger = LoggerImpl.getFor(Tree.class);
+	protected static final Logger logger = LogManager.getLogger(Tree.class);
 	protected HashMap<String, Node> treeNodes = new HashMap();
 	protected ArrayList<Edge> treeEdges = new ArrayList<>();
 	protected ArrayList<ArrayList<String>> treeLevelsString;
