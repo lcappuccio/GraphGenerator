@@ -17,7 +17,7 @@ public class TestTree {
 	private Tree sut;
 
 	@Test
-	public void treeHasRootNode() {
+	public void treeHasRootNode() throws NodeException {
 		sut = new Tree();
 		assert (sut.nodeExists(Labels.ROOT_NODE_ID.toString()));
 	}

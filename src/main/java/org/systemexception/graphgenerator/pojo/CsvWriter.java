@@ -8,10 +8,10 @@ package org.systemexception.graphgenerator.pojo;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.systemexception.graphgenerator.enums.CsvHeaders;
 import org.systemexception.graphgenerator.model.Tree;
-import org.systemexception.logger.api.Logger;
-import org.systemexception.logger.impl.LoggerImpl;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class CsvWriter {
 
-	private static final Logger logger = LoggerImpl.getFor(CsvWriter.class);
+	private static final Logger logger = LogManager.getLogger(CsvWriter.class);
 	private final CSVFormat csvFormat;
 	private final String fileName;
 
