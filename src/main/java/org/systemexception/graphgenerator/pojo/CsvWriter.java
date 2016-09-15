@@ -54,14 +54,14 @@ public class CsvWriter {
 			}
 			logger.info("CSV file was created successfully");
 		} catch (IOException exception) {
-			logger.error("IOException", exception);
+			logger.error("IOException on creating CSV", exception);
 		} finally {
 			try {
 				outWriter.flush();
 				outWriter.close();
 				csvFilePrinter.close();
 			} catch (IOException exception) {
-				logger.error("IOException", exception);
+				logger.error("IOException on closing stream writer", exception);
 			}
 		}
 	}
