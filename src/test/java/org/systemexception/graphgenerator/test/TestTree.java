@@ -6,7 +6,7 @@ import org.systemexception.graphgenerator.exception.EdgeException;
 import org.systemexception.graphgenerator.exception.NodeException;
 import org.systemexception.graphgenerator.exception.TreeException;
 import org.systemexception.graphgenerator.model.Node;
-import org.systemexception.graphgenerator.model.Tree;
+import org.systemexception.graphgenerator.model.tree.Tree;
 
 /**
  * @author leo
@@ -14,6 +14,7 @@ import org.systemexception.graphgenerator.model.Tree;
  */
 public class TestTree {
 
+	private final String testNodeDescr = "testNode";
 	private Tree sut;
 
 	@Test
@@ -25,7 +26,7 @@ public class TestTree {
 	@Test(expected = TreeException.class)
 	public void exceptionOnNonExistingParentNode() throws NodeException, EdgeException, TreeException {
 		sut = new Tree();
-		Node testNode = new Node("999", "testNode");
+		Node testNode = new Node("999", testNodeDescr);
 		Node nonExistingNode = new Node("XXX", "nonExistingNode");
 		sut.addNode(testNode, nonExistingNode);
 	}
@@ -33,7 +34,7 @@ public class TestTree {
 	@Test(expected = TreeException.class)
 	public void exceptionOnAddExistingNode() throws EdgeException, TreeException, NodeException {
 		sut = new Tree();
-		Node testNode = new Node("2", "testNode");
+		Node testNode = new Node("2", testNodeDescr);
 		sut.addNode(testNode, sut.getNodeById("1"));
 		sut.addNode(testNode, sut.getNodeById("1"));
 	}

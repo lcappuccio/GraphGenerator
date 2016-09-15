@@ -2,13 +2,14 @@
  * @author leo
  * @date 20/04/2015 19:28
  */
-package org.systemexception.graphgenerator.model;
+package org.systemexception.graphgenerator.model.tree;
 
 import org.systemexception.graphgenerator.enums.ErrorCodes;
 import org.systemexception.graphgenerator.enums.Labels;
 import org.systemexception.graphgenerator.exception.EdgeException;
 import org.systemexception.graphgenerator.exception.NodeException;
 import org.systemexception.graphgenerator.exception.TreeException;
+import org.systemexception.graphgenerator.model.Node;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -10,17 +10,18 @@ import org.systemexception.graphgenerator.model.Node;
 
 public class TestNode {
 
+	private final String nodeIdAndDescr = "123";
 	private Node sut;
 
 	@Test(expected = NodeException.class)
 	public void throwExceptionOnNullId() throws NodeException {
-		String nodeDescr = "123";
+		String nodeDescr = nodeIdAndDescr;
 		sut = new Node(null, nodeDescr);
 	}
 
 	@Test(expected = NodeException.class)
 	public void throwExceptionOnNullDescr() throws NodeException {
-		String nodeId = "123";
+		String nodeId = nodeIdAndDescr;
 		sut = new Node(nodeId, null);
 	}
 

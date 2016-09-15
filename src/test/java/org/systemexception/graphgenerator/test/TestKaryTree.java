@@ -9,7 +9,7 @@ import org.systemexception.graphgenerator.enums.Labels;
 import org.systemexception.graphgenerator.exception.EdgeException;
 import org.systemexception.graphgenerator.exception.NodeException;
 import org.systemexception.graphgenerator.exception.TreeException;
-import org.systemexception.graphgenerator.model.KaryTree;
+import org.systemexception.graphgenerator.model.tree.KaryTree;
 import org.systemexception.graphgenerator.model.Node;
 
 import java.util.ArrayList;

@@ -8,7 +8,7 @@ import org.apache.commons.cli.*;
 import org.systemexception.graphgenerator.exception.EdgeException;
 import org.systemexception.graphgenerator.exception.NodeException;
 import org.systemexception.graphgenerator.exception.TreeException;
-import org.systemexception.graphgenerator.model.KaryTree;
+import org.systemexception.graphgenerator.model.tree.KaryTree;
 import org.systemexception.graphgenerator.pojo.CsvWriter;
 
 public class Main {

@@ -1,4 +1,4 @@
-package org.systemexception.graphgenerator.model;
+package org.systemexception.graphgenerator.model.tree;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -7,6 +7,8 @@ import org.systemexception.graphgenerator.enums.Labels;
 import org.systemexception.graphgenerator.exception.EdgeException;
 import org.systemexception.graphgenerator.exception.NodeException;
 import org.systemexception.graphgenerator.exception.TreeException;
+import org.systemexception.graphgenerator.model.Edge;
+import org.systemexception.graphgenerator.model.Node;
 
 import java.util.ArrayList;
 import java.util.HashMap;

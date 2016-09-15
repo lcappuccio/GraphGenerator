@@ -11,7 +11,7 @@ import org.apache.commons.csv.CSVPrinter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.systemexception.graphgenerator.enums.CsvHeaders;
-import org.systemexception.graphgenerator.model.Tree;
+import org.systemexception.graphgenerator.model.tree.Tree;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -53,15 +53,15 @@ public class CsvWriter {
 				csvFilePrinter.printRecord(treeLevel);
 			}
 			logger.info("CSV file was created successfully");
-		} catch (IOException e) {
-			logger.error("IOException", e);
+		} catch (IOException exception) {
+			logger.error("IOException", exception);
 		} finally {
 			try {
 				outWriter.flush();
 				outWriter.close();
 				csvFilePrinter.close();
-			} catch (IOException e) {
-				logger.error("IOException", e);
+			} catch (IOException exception) {
+				logger.error("IOException", exception);
 			}
 		}
 	}
