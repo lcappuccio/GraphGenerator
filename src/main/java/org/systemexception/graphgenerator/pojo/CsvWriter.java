@@ -13,10 +13,7 @@ import org.apache.logging.log4j.Logger;
 import org.systemexception.graphgenerator.enums.CsvHeaders;
 import org.systemexception.graphgenerator.model.tree.Tree;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.util.ArrayList;
 
 public class CsvWriter {
@@ -43,26 +40,15 @@ public class CsvWriter {
 	 */
 	public void writeTreeFile(Tree tree) {
 
-		CSVPrinter csvFilePrinter = null;
-		OutputStreamWriter outWriter = null;
+		try (OutputStreamWriter outWriter = new OutputStreamWriter(new FileOutputStream(new File(fileName)), "UTF-8");
+		     CSVPrinter csvFilePrinter = new CSVPrinter(outWriter, csvFormat)) {
 
-		try {
-			outWriter = new OutputStreamWriter(new FileOutputStream(new File(fileName)), "UTF-8");
-			csvFilePrinter = new CSVPrinter(outWriter, csvFormat);
 			for (ArrayList<String> treeLevel : tree.getTreeLevelsString()) {
 				csvFilePrinter.printRecord(treeLevel);
 			}
 			logger.info("CSV file was created successfully");
 		} catch (IOException exception) {
 			logger.error("IOException on creating CSV", exception);
-		} finally {
-			try {
-				outWriter.flush();
-				outWriter.close();
-				csvFilePrinter.close();
-			} catch (IOException exception) {
-				logger.error("IOException on closing stream writer", exception);
-			}
 		}
 	}
 }
